@@ -1,22 +1,27 @@
 import { createBrowserRouter } from "react-router-dom";
+import React from "react";
 import Routes from "./Routes";
+import HomePage from "../Pages/HomePage";
+import OrderPage from "../Pages/OrderPage";
+import CreatePage from "../Pages/CreateOrder";
+import ModifyPage from "../Pages/ModifyPage";
 
 const router = createBrowserRouter([
   {
     path: Routes.HOME,
-    //element: <ListOrders />,
+    element: <HomePage />,
   },
   {
     path: Routes.ORDER,
-    // element: <OrderView/>
+    element: <OrderPage />,
   },
   {
     path: Routes.CREATE,
-    //element: <CreateOrder/>
+    element: <CreatePage />,
   },
   {
     path: Routes.MODIFY,
-    //element: <ModifyOrder/>
+    element: <ModifyPage />,
   },
 ]);
 
