@@ -1,5 +1,8 @@
+import React from "react";
+import { Flex } from "@chakra-ui/react";
+
 const OrderPage = () => {
-  return;
+  return <Flex />;
 };
 
 export default OrderPage;
