@@ -1,8 +1,12 @@
-import CardOrder from "../Components/Atoms/CardOrder";
+import ListOrder from "../Components/Atoms/ListOrder";
 import React from "react";
 
 const HomePage = () => {
-  return <CardOrder />;
+  return (
+    <>
+      <ListOrder />
+    </>
+  );
 };
 
 export default HomePage;

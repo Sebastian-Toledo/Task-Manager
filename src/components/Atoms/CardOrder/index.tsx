@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, Flex, Card, CardBody, Text } from "@chakra-ui/react";
-import { useState } from "react";
-import Order from "../../../Type/Order";
+import { Flex, Card, Text } from "@chakra-ui/react";
+//import Order from "../../../Type/Order";
+import cardOrderStyles from "./styles";
 
 // interface Props {
 //     order: Order;
@@ -9,18 +9,33 @@ import Order from "../../../Type/Order";
 
 const CardOrder = () => {
   return (
-    <Card display="flex" direction={{ base: "column", sm: "row" }} gap="4">
-      <Text>Trabajo</Text>
-
-      <Text>Autor</Text>
-
-      <Text>Fecha Ingreso</Text>
-
-      <Text>Fecha Limite</Text>
-
-      <Text>Estado</Text>
-
-      <Text>Empleado</Text>
+    <Card sx={cardOrderStyles.mainContainerCard}>
+      <Flex sx={cardOrderStyles.flexContainer}>
+        <Text>Trabajo</Text>
+        <Card sx={cardOrderStyles.cardContainer}>Cartel</Card>
+      </Flex>
+      <Flex sx={cardOrderStyles.flexContainer}>
+        <Text>Autor</Text>
+        <Card sx={cardOrderStyles.cardContainer}>
+          Ministerio de puerto deseado
+        </Card>
+      </Flex>
+      <Flex sx={cardOrderStyles.flexContainer}>
+        <Text>Fecha Ingreso</Text>
+        <Card sx={cardOrderStyles.cardContainer}>12/04/2023</Card>
+      </Flex>
+      <Flex sx={cardOrderStyles.flexContainer}>
+        <Text>Fecha Limite</Text>
+        <Card sx={cardOrderStyles.cardContainer}>19/04/2023</Card>
+      </Flex>
+      <Flex sx={cardOrderStyles.flexContainer}>
+        <Text>Estado</Text>
+        <Card sx={cardOrderStyles.cardContainer}>En Proceso</Card>
+      </Flex>
+      <Flex sx={cardOrderStyles.flexContainer}>
+        <Text>Empleado</Text>
+        <Card sx={cardOrderStyles.cardContainer}>Sebastian Cretton</Card>
+      </Flex>
     </Card>
   );
 };
