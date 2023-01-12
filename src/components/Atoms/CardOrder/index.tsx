@@ -8,7 +8,7 @@ import Order from "../../../Type/Order";
 // }
 
 const CardOrder = () => {
-  return <Flex></Flex>;
+  return <Flex>Card</Flex>;
 };
 
 export default CardOrder;
