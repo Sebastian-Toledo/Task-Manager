@@ -14,6 +14,7 @@ const cardOrderStyles = {
   },
   cardContainer: {
     backgroundColor: "yellow",
+    alignItems: "center",
   },
 };
 
