@@ -5,7 +5,7 @@ interface Order {
   estimatedTime: number;
   description: string;
   deadline: Date;
-  employeeInCharge: string;
+  employee: string;
   budget: string;
   stateOrder: string;
   comment?: string;
