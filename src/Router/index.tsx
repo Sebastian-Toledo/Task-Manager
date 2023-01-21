@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: Routes.ORDER,
+    path: `${Routes.ORDER}/:recipeId`,
     element: <OrderPage />,
   },
   {
