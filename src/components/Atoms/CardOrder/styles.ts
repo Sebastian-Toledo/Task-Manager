@@ -9,12 +9,16 @@ const cardOrderStyles = {
   },
   flexContainer: {
     display: "flex",
+    flexBasis: "200px",
     flexDirection: "column",
     gap: "2",
   },
   cardContainer: {
     backgroundColor: "yellow",
     alignItems: "center",
+  },
+  divider: {
+    height: "2px",
   },
 };
 
