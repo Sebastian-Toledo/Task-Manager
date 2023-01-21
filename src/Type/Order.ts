@@ -1,4 +1,5 @@
 interface Order {
+  id: number;
   title: string;
   author: string;
   dateCurrent: Date;
@@ -10,6 +11,8 @@ interface Order {
   stateOrder: string;
   comment?: string;
   dateChange?: Date;
+  sign: number;
+  phone: number;
 }
 
 export default Order;
