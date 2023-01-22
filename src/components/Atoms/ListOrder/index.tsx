@@ -1,6 +1,6 @@
 import CardOrder from "../CardOrder";
-import React from "react";
-import { List, ListItem } from "@chakra-ui/react";
+import PlacementExample from "../NavBar/NavBar";
+import { Divider, List, ListItem } from "@chakra-ui/react";
 import Order from "../../../Type/Order";
 import { useState, useEffect } from "react";
 
@@ -37,6 +37,8 @@ const ListOrder = () => {
   return (
     <List backgroundColor="red" paddingBottom="2" paddingTop="2">
       <ListItem backgroundColor="gray" alignItems="center" padding="2">
+        <PlacementExample />
+        <Divider height="2px" />
         {rederContent()}
       </ListItem>
     </List>
