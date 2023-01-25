@@ -1,10 +1,11 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
+import FormOrder from "../Components/FormOrder";
 
 const CreatePage = () => {
   return (
     <Flex>
-      <p>create</p>
+      <FormOrder />
     </Flex>
   );
 };
