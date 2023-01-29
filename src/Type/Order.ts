@@ -5,13 +5,13 @@ interface Order {
   dateCurrent: Date;
   estimatedTime: number;
   description: string;
-  deadline: Date;
+  deadLine: Date;
   employee: string;
   budget: string;
   stateOrder: string;
   comment?: string;
   dateChange?: Date;
-  sign: number;
+  cashAdvance: number;
   phone: number;
 }
 

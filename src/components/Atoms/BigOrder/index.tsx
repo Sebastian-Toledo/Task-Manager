@@ -14,13 +14,13 @@ const BigOrder = (props: Props) => {
     dateCurrent,
     estimatedTime,
     description,
-    deadline,
+    deadLine,
     employee,
     budget,
     stateOrder,
     comment,
     dateChange,
-    sign,
+    cashAdvance,
     phone,
   } = props.order;
 

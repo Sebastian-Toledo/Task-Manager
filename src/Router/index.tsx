@@ -3,7 +3,7 @@ import React from "react";
 import Routes from "./Routes";
 import HomePage from "../Pages/HomePage";
 import OrderPage from "../Pages/OrderPage";
-import CreatePage from "../Pages/CreateOrder";
+import CreatePage from "../Pages/CreatePage";
 import ModifyPage from "../Pages/ModifyPage";
 
 const router = createBrowserRouter([

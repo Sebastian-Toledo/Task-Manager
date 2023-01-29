@@ -14,13 +14,13 @@ const CardOrder = (props: Props) => {
     title,
     author,
     dateCurrent,
-    deadline,
+    deadLine,
     employee,
     budget,
     stateOrder,
     id,
   } = props.order;
-  const d = new Date(deadline);
+  const d = new Date(deadLine);
   const c = new Date(dateCurrent);
 
   return (
