@@ -1,4 +1,4 @@
-import ListOrder from "../Components/Atoms/ListOrder";
+import ListOrder from "../Components/Molecules/ListOrder";
 import React from "react";
 
 const HomePage = () => {

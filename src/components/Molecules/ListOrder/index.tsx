@@ -1,5 +1,5 @@
-import CardOrder from "../CardOrder";
-import PlacementExample from "../NavBar/NavBar";
+import CardOrder from "../../Atoms/CardOrder";
+import PlacementExample from "../../Atoms/NavBar/NavBar";
 import { Divider, List, ListItem } from "@chakra-ui/react";
 import Order from "../../../Type/Order";
 import { useState, useEffect } from "react";

@@ -7,7 +7,7 @@ interface Order {
   description: string;
   deadLine: Date;
   employee: string;
-  budget: string;
+  budget: number;
   stateOrder: string;
   comment?: string;
   dateChange?: Date;

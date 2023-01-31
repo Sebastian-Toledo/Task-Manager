@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Routes from "../../../Router/Routes";
 
 interface NavItemProps extends FlexProps {
-  icon: IconType;
+  icon?: IconType;
   to: Routes;
   children: ReactText;
 }
@@ -13,7 +13,7 @@ const NavItem = ({ to, icon, children, ...rest }: NavItemProps) => {
   return (
     <Link
       to={`${to}`}
-      style={{ textDecoration: "none" }}
+      style={{ fontWeight: "bold", textDecoration: "none" }}
       //_focus={{ boxShadow: "none" }}
     >
       <Flex
