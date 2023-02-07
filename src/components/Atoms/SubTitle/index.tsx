@@ -8,7 +8,7 @@ interface Props {
 const SubTitle = (props: Props) => {
   return (
     <Flex flexDir="column" gap={props.gap}>
-      <Text as="b" color="gray.300">
+      <Text as="b" color="gray.400">
         {props.name}
       </Text>
       <Divider border="1px" color="gray.300" />

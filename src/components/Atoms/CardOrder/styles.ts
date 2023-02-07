@@ -1,11 +1,12 @@
 const cardOrderStyles = {
   mainContainerCard: {
+    border: "2px",
+    borderColor: "#a0aec075",
     display: "flex",
     flexDirection: "row",
     padding: "4",
     gap: "4",
     justifyContent: "space-between",
-    backgroundColor: "green",
   },
   flexContainer: {
     display: "flex",
@@ -14,7 +15,6 @@ const cardOrderStyles = {
     gap: "2",
   },
   cardContainer: {
-    backgroundColor: "yellow",
     alignItems: "center",
   },
   divider: {

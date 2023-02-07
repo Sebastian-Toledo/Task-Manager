@@ -1,11 +1,11 @@
+import { Flex } from "@chakra-ui/react";
 import ListOrder from "../Components/Molecules/ListOrder";
-import React from "react";
 
 const HomePage = () => {
   return (
-    <>
+    <Flex backgroundColor="#f5f4f9" justifyContent="space-around">
       <ListOrder />
-    </>
+    </Flex>
   );
 };
 

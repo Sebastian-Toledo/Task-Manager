@@ -2,10 +2,7 @@ import { useState } from "react";
 import Routes from "../../../Router/Routes";
 import { AiFillFileAdd } from "react-icons/ai";
 import {
-  //   Flex,
-  //   Card,
-  //   Text,
-  //   Divider,
+  Flex,
   Stack,
   Radio,
   RadioGroup,
@@ -22,14 +19,23 @@ import {
 } from "@chakra-ui/react";
 import NavItem from "../NavItem";
 
-function PlacementExample() {
+interface Props {
+  value: string;
+}
+
+function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [placement, setPlacement] = useState("En Proceso");
+  const [author, setAuthor] = useState(" ");
+
+  const onChange = (event: any) => {
+    setAuthor(event.currentTarget.value);
+  };
 
   return (
-    <>
+    <Flex backgroundColor="white">
       <Button colorScheme="blue" onClick={onOpen}>
-        Open
+        Menu
       </Button>
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
@@ -51,6 +57,7 @@ function PlacementExample() {
               </Stack>
             </RadioGroup>
             <Input
+              onChange={onChange}
               _placeholder={{ color: "black" }}
               variant="outline"
               placeholder="Buscador Cliente"
@@ -58,8 +65,8 @@ function PlacementExample() {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </>
+    </Flex>
   );
 }
 
-export default PlacementExample;
+export default NavBar;

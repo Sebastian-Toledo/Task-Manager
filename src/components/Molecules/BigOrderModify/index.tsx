@@ -1,5 +1,5 @@
 import Order from "../../../Type/Order";
-import { Flex, Text, Divider, Heading } from "@chakra-ui/react";
+import { Flex, Text, Divider } from "@chakra-ui/react";
 import ButtonCancel from "../../Atoms/ButtonCancel";
 import ButtonSave from "../../Atoms/ButtonSave";
 import InputNumber from "../../Atoms/InputNumber";
@@ -11,13 +11,12 @@ import SelectEstimated from "../../Atoms/SelectEstimated";
 import InputDate from "../../Atoms/InputDate/Index";
 import NavItem from "../../Atoms/NavItem";
 import Routes from "../../../Router/Routes";
-import { AddIcon } from "@chakra-ui/icons";
 
 interface Props {
   order: Order;
 }
 
-const BigOrder = (props: Props) => {
+const BigOrderModify = (props: Props) => {
   const {
     title,
     author,
@@ -28,30 +27,23 @@ const BigOrder = (props: Props) => {
     employee,
     budget,
     stateOrder,
-    comment,
-    dateChange,
     cashAdvance,
     phone,
   } = props.order;
 
   return (
-    <Flex flexDirection="column" gap="5">
-      <Flex justifyContent="start">
+    <Flex backgroundColor="#f5f4f9" flexDirection="column" gap="5">
+      <Flex alignItems="start">
         <NavItem key="HOME" to={Routes.HOME}>
           {"< Volver atrás"}
         </NavItem>
       </Flex>
-      <Flex gap="5" alignItems="center" justifyContent="center">
-        <AddIcon boxSize={6} />
-        <Heading size="lg">Ver o modificar un pedido</Heading>
-      </Flex>
-      <Flex gap="5" flexDirection="column">
+      <Flex gap="5" flexDirection="column" alignItems="center">
         <Divider w="868px" border="1px" color="gray.700" />
         <Text as="b" color="gray.500">
           DATOS DEL PEDIDO
         </Text>
       </Flex>
-
       <Flex flexDirection="column" alignItems="center" gap="5">
         <Flex
           flexDirection="column"
@@ -61,6 +53,7 @@ const BigOrder = (props: Props) => {
         >
           <Flex gap="5">
             <InputText name="Título" value={title} disabled={true} />
+
             <InputText
               name="Empleado a cargo"
               value={employee}
@@ -109,6 +102,7 @@ const BigOrder = (props: Props) => {
               name="Seña"
               placeholder="Escribe un valor..."
               value={cashAdvance}
+              disabled={true}
             />
             <InputNumber
               name="Número de presupuesto"
@@ -119,27 +113,12 @@ const BigOrder = (props: Props) => {
           </Flex>
         </Flex>
       </Flex>
-      <Flex alignItems="center" justifyContent="space-between">
-        <Flex>
-          <NavItem
-            key="MODIFY"
-            to={Routes.MODIFY}
-            w="175px"
-            borderRadius="1px"
-            bg="#ff375b"
-            color="white"
-            h="48px"
-          >
-            Extender plazo
-          </NavItem>
-        </Flex>
-        <Flex gap="5">
-          <ButtonCancel />
-          <ButtonSave />
-        </Flex>
+      <Flex alignItems="center" justifyContent="center" gap="5">
+        <ButtonCancel />
+        <ButtonSave />
       </Flex>
     </Flex>
   );
 };
 
-export default BigOrder;
+export default BigOrderModify;

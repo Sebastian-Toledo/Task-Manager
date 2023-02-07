@@ -3,7 +3,9 @@ import { ChangeEvent, useState } from "react";
 
 interface Props {
   name: string;
+  disabled?: boolean;
   placeholder: string;
+  value?: number;
 }
 
 const InputPhone = (props: Props) => {
@@ -16,6 +18,7 @@ const InputPhone = (props: Props) => {
     <FormControl>
       <FormLabel>{props.name}</FormLabel>
       <Input
+        disabled={props.disabled}
         type="tel"
         placeholder={props.placeholder}
         onChange={() => handlePhone}
@@ -23,6 +26,7 @@ const InputPhone = (props: Props) => {
         borderColor="gray"
         borderRadius="1px"
         w="sm"
+        value={props.value}
       />
     </FormControl>
   );

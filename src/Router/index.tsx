@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import React from "react";
 import Routes from "./Routes";
 import HomePage from "../Pages/HomePage";
 import OrderPage from "../Pages/OrderPage";
@@ -12,7 +11,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: `${Routes.ORDER}/:recipeId`,
+    path: `${Routes.ORDER}/:orderId`,
     element: <OrderPage />,
   },
   {
