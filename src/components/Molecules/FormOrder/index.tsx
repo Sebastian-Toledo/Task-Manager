@@ -69,9 +69,9 @@ const FormOrder = () => {
             </Flex>
             <SubTitle name="DATOS DEL PLAZO" gap={3} />
             <Flex gap="5">
-              <InputDate />
+              <InputDate text="Fecha de ingreso" />
               <SelectEstimated name="Tiempo estimado" />
-              <InputDate />
+              <InputDate text="Fecha de entrega" />
             </Flex>
             <SubTitle name="PRESUPUESTO" gap={3} />
             <Flex gap="4">
