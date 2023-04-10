@@ -1,11 +1,12 @@
 import { FormControl, FormLabel, Textarea } from "@chakra-ui/react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useState } from "react";
 
 interface Props {
   disabled?: boolean;
-  name: string;
+  lable: string;
   placeholder?: string;
   value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const InputDescription = (props: Props) => {
@@ -17,7 +18,7 @@ const InputDescription = (props: Props) => {
 
   return (
     <FormControl>
-      <FormLabel>{props.name}</FormLabel>
+      <FormLabel>{props.lable}</FormLabel>
       <Textarea
         disabled={props.disabled}
         border="1px"

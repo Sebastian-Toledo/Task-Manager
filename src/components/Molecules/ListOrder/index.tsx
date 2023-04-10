@@ -17,6 +17,7 @@ import NavItem from "../../Atoms/NavItem";
 import { AiFillFileAdd } from "react-icons/ai";
 import Routes from "../../../Router/Routes";
 import { Heading } from "@chakra-ui/react";
+import { HOST } from "../../../utils/envirementConfiguration";
 
 const ListOrder = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -24,11 +25,13 @@ const ListOrder = () => {
   const [placement, setPlacement] = useState("En Proceso");
 
   useEffect(() => {
-    fetch(`https://63c06874e262345656fe70d5.mockapi.io/api/v1/Task`)
+    fetch(`${HOST}/task`)
       .then((response) => response.json())
-      .then((order) => setOrders(order));
+      .then((orderss: Order[]) => {
+        setOrders(orderss);
+      });
   }, []);
-
+  //console.log(orders);
   // const filterOrders = (order: Order) => {
   //   if (!stateOrders) {
   //     return true;
@@ -41,20 +44,22 @@ const ListOrder = () => {
     setAuthor(event.currentTarget.value);
   };
 
-  const renderOrder = (order: Order, index: number) => (
-    <CardOrder order={order} key={`${JSON.stringify(order)}/${index}`} />
-  );
+  const renderOrder = (order: Order, index: number) => {
+    return (
+      <CardOrder order={order} key={`${JSON.stringify(order)}/${index}`} />
+    );
+  };
 
   const renderContent = () => {
     if (!orders.length) {
       return [0, 1, 2].map((item) => <OrderPlaceholder key={item} />);
     }
-
-    return orders.filter(filterOrders).map(renderOrder);
+    //console.log(orders.filter(filterTasks));
+    return orders.filter(filterTasks).map(renderOrder);
   };
 
-  const filterOrders = (order: Order) => {
-    if (!author) {
+  const filterTasks = (order: Order) => {
+    if (author === " ") {
       return true;
     }
     return order.author.toLowerCase().includes(author.toLowerCase());

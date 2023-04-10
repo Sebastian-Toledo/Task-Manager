@@ -33,7 +33,7 @@ const BigOrder = (props: Props) => {
     cashAdvance,
     phone,
   } = props.order;
-
+  console.log(props.order);
   return (
     <Flex flexDirection="column" gap="5">
       <Flex justifyContent="start">
@@ -60,58 +60,58 @@ const BigOrder = (props: Props) => {
           padding="10"
         >
           <Flex gap="5">
-            <InputText name="Título" value={title} disabled={true} />
+            <InputText lable="Título" value={title} disabled={true} />
             <InputText
-              name="Empleado a cargo"
+              lable="Empleado a cargo"
               value={employee}
               disabled={true}
             />
           </Flex>
           <Flex gap="4">
             <InputDescription
-              name="Descripción"
+              lable="Descripción"
               value={description}
               disabled={true}
             />
           </Flex>
-          <SubTitle name="DATOS DEL CLIENTE" gap={3} />
+          <SubTitle lable="DATOS DEL CLIENTE" gap={3} />
           <Flex gap="4">
             <InputText
-              name="Nombre del cliente"
+              lable="Nombre del cliente"
               placeholder="Nombre y apellido..."
               value={author}
               disabled={true}
             />
             <InputPhone
-              name="Número de teléfono"
+              lable="Número de teléfono"
               placeholder="Número de teléfono..."
               value={phone}
               disabled={true}
             />
           </Flex>
-          <SubTitle name="DATOS DEL PLAZO" gap={3} />
+          <SubTitle lable="DATOS DEL PLAZO" gap={3} />
           <Flex gap="5">
             <InputDate
               text="Fecha de ingreso"
               disabled={true}
               value={dateCurrent}
             />
-            <SelectEstimated name="Tiempo estimado" />
+            <SelectEstimated lable="Tiempo estimado" />
             <InputDate
               text="Fecha de entrega"
               disabled={true}
               value={deadLine}
             />
           </Flex>
-          <SubTitle name="PRESUPUESTO" gap={3} />
+          <SubTitle lable="PRESUPUESTO" gap={3} />
           <Flex gap="4">
             <InputNumber
-              name="Seña"
+              lable="Seña"
               placeholder="Escribe un valor..."
               value={cashAdvance}
             />
             <InputNumber
-              name="Número de presupuesto"
+              lable="Número de presupuesto"
               placeholder="Número un número..."
               value={budget}
               disabled={true}

@@ -13,7 +13,7 @@ interface Props {
   order: Order;
 }
 
-const ModifyOrder = (props: Props) => {
+const ModifyTimeLimit = (props: Props) => {
   const { title, deadLine, employee, comment, dateChange } = props.order;
 
   return (
@@ -48,9 +48,9 @@ const ModifyOrder = (props: Props) => {
           padding="10"
         >
           <Flex gap="5">
-            <InputText name="Título" value={title} disabled={true} />
+            <InputText lable="Titulo" value={title} disabled={true} />
             <InputText
-              name="Empleado a cargo"
+              lable="Empleado a cargo"
               disabled={true}
               value={employee}
             />
@@ -67,7 +67,7 @@ const ModifyOrder = (props: Props) => {
         >
           <Flex>
             <InputText
-              name="Empleado que extiende"
+              lable="Empleado que extiende"
               placeholder="Nombre del empleado..."
             />
           </Flex>
@@ -82,7 +82,7 @@ const ModifyOrder = (props: Props) => {
           <Flex>
             <InputDescription
               placeholder="Escribir un mensaje..."
-              name="Razón por la cual se extiende el plazo"
+              lable="Razón por la cual se extiende el plazo"
             />
           </Flex>
           <Flex />
@@ -96,4 +96,4 @@ const ModifyOrder = (props: Props) => {
   );
 };
 
-export default ModifyOrder;
+export default ModifyTimeLimit;

@@ -4,17 +4,19 @@ import OrderPlaceholder from "../Components/Atoms/OrderPlaceholder";
 import BigOrder from "../Components/Molecules/BigOrder";
 import Order from "../Type/Order";
 import { Flex } from "@chakra-ui/react";
+import { HOST } from "../utils/envirementConfiguration";
 
 const OrderPage = () => {
   const { orderId } = useParams();
   const [order, setOrder] = useState<Order>();
 
   useEffect(() => {
-    fetch(`https://63c06874e262345656fe70d5.mockapi.io/api/v1/Task/${orderId}`)
+    console.log("intentando fechear");
+    fetch(`${HOST}/task/${orderId}`)
       .then((response) => response.json())
       .then((order) => setOrder(order));
   }, []);
-
+  console.log(order);
   if (!order) {
     return <OrderPlaceholder />;
   }
