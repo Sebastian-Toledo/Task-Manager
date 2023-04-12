@@ -8,6 +8,7 @@ import {
   ListItem,
   Radio,
   RadioGroup,
+  Select,
   Stack,
 } from "@chakra-ui/react";
 import Order from "../../../Type/Order";
@@ -20,9 +21,11 @@ import { Heading } from "@chakra-ui/react";
 import { HOST } from "../../../utils/envirementConfiguration";
 
 const ListOrder = () => {
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [author, setAuthor] = useState(" ");
-  const [placement, setPlacement] = useState("En Proceso");
+  const [getOrders, setOrders] = useState<Order[]>([]);
+  const [getAuthor, setAuthor] = useState(" ");
+  const [getEmployee, setEmployee] = useState(" ");
+  const [getSelect, setSelect] = useState("Cliente");
+  const [placement, setPlacement] = useState("In Process");
 
   useEffect(() => {
     fetch(`${HOST}/task`)
@@ -31,17 +34,22 @@ const ListOrder = () => {
         setOrders(orderss);
       });
   }, []);
-  //console.log(orders);
-  // const filterOrders = (order: Order) => {
-  //   if (!stateOrders) {
-  //     return true;
-  //   }
-  //   return order.stateOrder
-  //     .toLowerCase()
-  //     .includes(order.stateOrder.toLowerCase());
-  // };
+
   const onChange = (event: any) => {
-    setAuthor(event.currentTarget.value);
+    if (getSelect === "Empleado") {
+      setEmployee(event.currentTarget.value);
+    } else if (getSelect === "Cliente") {
+      setAuthor(event.currentTarget.value);
+    }
+    //console.log(event.currentTarget.value);
+    // console.log(getSelect);
+  };
+
+  const changeInput = (order: Order) => {
+    if (getSelect === "Cliente") {
+      return order.author.toLowerCase().includes(getAuthor.toLowerCase());
+    } else if (getSelect === "Empleado")
+      return order.employee.toLowerCase().includes(getEmployee.toLowerCase());
   };
 
   const renderOrder = (order: Order, index: number) => {
@@ -51,18 +59,39 @@ const ListOrder = () => {
   };
 
   const renderContent = () => {
-    if (!orders.length) {
+    if (!getOrders.length) {
       return [0, 1, 2].map((item) => <OrderPlaceholder key={item} />);
     }
-    //console.log(orders.filter(filterTasks));
-    return orders.filter(filterTasks).map(renderOrder);
+    //console.log(getOrders.filter(filterTasks).map(renderOrder));
+    return getOrders.filter(filterTasks).map(renderOrder);
+  };
+
+  const stateFilter = (order: Order) => {
+    //console.log(order.stateOrder, "  ", getEmployee);
+    switch (placement) {
+      case "In Process":
+        return order.stateOrder.includes(placement);
+      case "Finished":
+        return order.stateOrder.includes(placement);
+      case "Delivered":
+        return order.stateOrder.includes(placement);
+      case "Canceled":
+        return order.stateOrder.includes(placement);
+    }
   };
 
   const filterTasks = (order: Order) => {
-    if (author === " ") {
-      return true;
+    if (
+      order.stateOrder === "In Process" &&
+      getAuthor === " " &&
+      getEmployee === " "
+    ) {
+      //console.log("entra");
+      return stateFilter(order);
+    } else {
+      console.log(changeInput(order) && stateFilter(order));
+      return changeInput(order) && stateFilter(order);
     }
-    return order.author.toLowerCase().includes(author.toLowerCase());
   };
 
   return (
@@ -74,10 +103,10 @@ const ListOrder = () => {
         <Divider />
         <RadioGroup defaultValue={placement} onChange={setPlacement}>
           <Stack direction="row" mb="4" gap="5">
-            <Radio value="En Proceso">En Proceso</Radio>
-            <Radio value="Terminados">Terminados</Radio>
-            <Radio value="Entregados">Entregados</Radio>
-            <Radio value="Anulados">Anulados</Radio>
+            <Radio value="In Process">En Proceso</Radio>
+            <Radio value="Finished">Terminados</Radio>
+            <Radio value="Delivered">Entregados</Radio>
+            <Radio value="Canceled">Anulados</Radio>
             <Center height="50px" gap="10" paddingLeft="10">
               <Divider orientation="vertical" />
               <NavItem key="CREATE" icon={AiFillFileAdd} to={Routes.CREATE}>
@@ -86,13 +115,25 @@ const ListOrder = () => {
             </Center>
           </Stack>
         </RadioGroup>
-        <Input
-          type="text"
-          onChange={onChange}
-          _placeholder={{ color: "black" }}
-          variant="outline"
-          placeholder="Buscador Cliente"
-        />
+        <Flex gap="2">
+          <Select
+            w="15%"
+            value={getSelect}
+            onChange={(e) => setSelect(e.target.value)}
+          >
+            {" "}
+            <option value="Cliente">Cliente</option>
+            <option value="Empleado">Empleado</option>
+          </Select>
+          <Input
+            w="84%"
+            type="text"
+            onChange={onChange}
+            _placeholder={{ color: "black" }}
+            variant="outline"
+            placeholder="Buscador"
+          />{" "}
+        </Flex>
       </Flex>
 
       <List paddingBottom="2" paddingTop="2">

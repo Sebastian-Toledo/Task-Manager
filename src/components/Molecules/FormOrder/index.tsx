@@ -14,7 +14,6 @@ import {
 import ButtonCancel from "../../Atoms/ButtonCancel";
 import ButtonSave from "../../Atoms/ButtonSave";
 import SubTitle from "../../Atoms/SubTitle";
-import SelectEstimated from "../../Atoms/SelectEstimated";
 import NavItem from "../../Atoms/NavItem";
 import Routes from "../../../Router/Routes";
 import { EditIcon } from "@chakra-ui/icons";
@@ -42,10 +41,10 @@ const FormOrder = () => {
     validationSchema: Yup.object({
       title: Yup.string().required("Campo requerido"),
       author: Yup.string().required("Campo requerido"),
-      //dateCurrent: Yup.date().required("Campo requerido"),
-      //estimatedTime: Yup.number().required("Campo requerido"),
+      dateCurrent: Yup.date().required("Campo requerido"),
+      estimatedTime: Yup.number().required("Campo requerido"),
       description: Yup.string().required("Campo requerido"),
-      //deadLine: Yup.date().required("Campo requerido"),
+      deadLine: Yup.date().required("Campo requerido"),
       employee: Yup.string().required("Campo requerido"),
       budget: Yup.number().required("Campo requerido"),
       cashAdvance: Yup.number().required("Campo requerido"),
@@ -63,6 +62,7 @@ const FormOrder = () => {
         })
         .catch(function (res) {
           console.log(res);
+          alert("Hubo un problema con la subida detas");
         });
 
       alert(JSON.stringify(values, null, 2));
@@ -174,7 +174,6 @@ const FormOrder = () => {
                     name="currentDate"
                     type="datetime-local"
                     sx={formStyles.inputDescription}
-                    value={formatDateAsDatetimeString(new Date())}
                   />
                 </FormControl>
                 <FormControl>
@@ -185,6 +184,7 @@ const FormOrder = () => {
                     placeholder="Select option"
                     sx={formStyles.inputDescription}
                     onChange={formik.handleChange}
+                    value={formik.values.estimatedTime}
                   >
                     <option value="1">1 Dia</option>
                     <option value="2"> 2 - 3 Dias</option>
