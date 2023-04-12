@@ -17,13 +17,13 @@ const CardOrder = (props: Props) => {
     employee,
     budget,
     stateOrder,
-    id,
+    _id,
   } = props.order;
   const d = new Date(deadLine);
   const c = new Date(dateCurrent);
 
   return (
-    <Link to={`${Routes.ORDER}/${id}`}>
+    <Link to={`${Routes.ORDER}/${_id}`}>
       <Flex flexDirection="column">
         <Card>
           <CardBody sx={cardOrderStyles.mainContainerCard}>

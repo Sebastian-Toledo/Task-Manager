@@ -1,30 +1,32 @@
 import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { ChangeEvent, useState } from "react";
 import input from "./styles";
+import { Field } from "formik";
 
 interface Props {
-  name: string;
+  name?: string;
   disabled?: boolean;
   placeholder?: string;
   value?: string;
 }
 
 const InputText = (props: Props) => {
-  const [getText, setText] = useState("" || props.value);
+  const [getText, setText] = useState(props.value);
 
-  const handleEvent = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleEvent = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("hola");
     setText(e.target.value);
+    console.log("hola", getText);
   };
 
   return (
     <FormControl>
-      <FormLabel>{props.name}</FormLabel>
+      <FormLabel htmlFor="text">{props.name}</FormLabel>
       <Input
         disabled={props.disabled}
-        sx={input}
         placeholder={props.placeholder}
         type="text"
-        onChange={() => handleEvent}
+        sx={input}
         value={props.value}
       />
     </FormControl>

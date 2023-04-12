@@ -1,5 +1,5 @@
 import { FormControl, FormLabel, Textarea } from "@chakra-ui/react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useState } from "react";
 
 interface Props {
   disabled?: boolean;
