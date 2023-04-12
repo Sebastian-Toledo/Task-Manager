@@ -5,32 +5,29 @@ import { Field } from "formik";
 
 interface Props {
   name?: string;
-  lable: string;
   disabled?: boolean;
   placeholder?: string;
   value?: string;
 }
 
 const InputText = (props: Props) => {
-  const [getText, setText] = useState(props.value || " ");
+  const [getText, setText] = useState(props.value);
 
-  const handleEvent = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleEvent = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("hola");
     setText(e.target.value);
-    console.log(getText);
+    console.log("hola", getText);
   };
 
   return (
     <FormControl>
-      <FormLabel htmlFor="text">{props.lable}</FormLabel>
-      <Field
+      <FormLabel htmlFor="text">{props.name}</FormLabel>
+      <Input
         disabled={props.disabled}
         placeholder={props.placeholder}
-        id={props.name}
         type="text"
-        name={props.name}
         sx={input}
-        as={Input}
-        onChange={() => handleEvent}
+        value={props.value}
       />
     </FormControl>
   );

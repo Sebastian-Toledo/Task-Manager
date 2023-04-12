@@ -11,7 +11,6 @@ const OrderPage = () => {
   const [order, setOrder] = useState<Order>();
 
   useEffect(() => {
-    console.log("intentando fechear");
     fetch(`${HOST}/task/${orderId}`)
       .then((response) => response.json())
       .then((order) => setOrder(order));

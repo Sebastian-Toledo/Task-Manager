@@ -3,10 +3,9 @@ import { ChangeEvent, ChangeEventHandler, useState } from "react";
 
 interface Props {
   disabled?: boolean;
-  lable: string;
+  name: string;
   placeholder?: string;
   value?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const InputDescription = (props: Props) => {
@@ -18,7 +17,7 @@ const InputDescription = (props: Props) => {
 
   return (
     <FormControl>
-      <FormLabel>{props.lable}</FormLabel>
+      <FormLabel>{props.name}</FormLabel>
       <Textarea
         disabled={props.disabled}
         border="1px"

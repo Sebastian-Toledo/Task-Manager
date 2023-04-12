@@ -48,9 +48,9 @@ const ModifyTimeLimit = (props: Props) => {
           padding="10"
         >
           <Flex gap="5">
-            <InputText lable="Titulo" value={title} disabled={true} />
+            <InputText name="Titulo" value={title} disabled={true} />
             <InputText
-              lable="Empleado a cargo"
+              name="Empleado a cargo"
               disabled={true}
               value={employee}
             />
@@ -67,7 +67,7 @@ const ModifyTimeLimit = (props: Props) => {
         >
           <Flex>
             <InputText
-              lable="Empleado que extiende"
+              name="Empleado que extiende"
               placeholder="Nombre del empleado..."
             />
           </Flex>
@@ -82,7 +82,7 @@ const ModifyTimeLimit = (props: Props) => {
           <Flex>
             <InputDescription
               placeholder="Escribir un mensaje..."
-              lable="Razón por la cual se extiende el plazo"
+              name="Razón por la cual se extiende el plazo"
             />
           </Flex>
           <Flex />

@@ -1,7 +1,7 @@
 import { FormControl, FormLabel, Select } from "@chakra-ui/react";
 
 interface Props {
-  lable: string;
+  name: string;
   disabled?: boolean;
   value?: number;
 }
@@ -9,13 +9,14 @@ interface Props {
 const SelectEstimated = (props: Props) => {
   return (
     <FormControl>
-      <FormLabel>{props.lable}</FormLabel>
+      <FormLabel>{props.name}</FormLabel>
       <Select
         disabled={props.disabled}
         placeholder="Select option"
         border="1px"
         borderColor="gray"
         borderRadius="1px"
+        value={props.value}
       >
         <option value="1">1 Dia</option>
         <option value="2"> 2 - 3 Dias</option>

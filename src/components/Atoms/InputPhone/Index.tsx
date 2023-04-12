@@ -2,7 +2,7 @@ import { FormLabel, FormControl, Input } from "@chakra-ui/react";
 import { ChangeEvent, useState } from "react";
 
 interface Props {
-  lable: string;
+  name: string;
   disabled?: boolean;
   placeholder?: string;
   value?: number;
@@ -16,16 +16,15 @@ const InputPhone = (props: Props) => {
   };
   return (
     <FormControl>
-      <FormLabel>{props.lable}</FormLabel>
+      <FormLabel>{props.name}</FormLabel>
       <Input
         disabled={props.disabled}
-        type="tel"
-        placeholder={props.placeholder}
-        onChange={() => handlePhone}
         border="1px"
         borderColor="gray"
         borderRadius="1px"
-        w="sm"
+        type="tel"
+        placeholder={props.placeholder}
+        onChange={() => handlePhone}
         value={getPhone}
       />
     </FormControl>

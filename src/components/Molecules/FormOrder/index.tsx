@@ -1,38 +1,75 @@
-import { Flex, Text, Divider, Heading } from "@chakra-ui/react";
+import {
+  Flex,
+  Text,
+  Divider,
+  Heading,
+  FormLabel,
+  Input,
+  FormControl,
+  Textarea,
+  Select,
+  FormHelperText,
+  FormErrorMessage,
+} from "@chakra-ui/react";
 import ButtonCancel from "../../Atoms/ButtonCancel";
 import ButtonSave from "../../Atoms/ButtonSave";
-import InputDate from "../../Atoms/InputDate/Index";
-import InputNumber from "../../Atoms/InputNumber";
-import InputPhone from "../../Atoms/InputPhone/Index";
-import InputText from "../../Atoms/InputText";
 import SubTitle from "../../Atoms/SubTitle";
-import InputDescription from "../../Atoms/InputDescription";
 import SelectEstimated from "../../Atoms/SelectEstimated";
 import NavItem from "../../Atoms/NavItem";
 import Routes from "../../../Router/Routes";
 import { EditIcon } from "@chakra-ui/icons";
-import { Formik } from "formik";
+import { ErrorMessage, useFormik } from "formik";
+import formStyles from "./styles";
+import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
+import axios from "axios";
+import * as Yup from "yup";
 
 const FormOrder = () => {
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      author: "",
+      dateCurrent: formatDateAsDatetimeString(new Date()),
+      estimatedTime: 0,
+      description: "",
+      deadLine: formatDateAsDatetimeString(new Date()),
+      employee: "",
+      budget: 0,
+      stateOrder: "In Process",
+      cashAdvance: 0,
+      phone: 0,
+    },
+    validationSchema: Yup.object({
+      title: Yup.string().required("Campo requerido"),
+      author: Yup.string().required("Campo requerido"),
+      //dateCurrent: Yup.date().required("Campo requerido"),
+      //estimatedTime: Yup.number().required("Campo requerido"),
+      description: Yup.string().required("Campo requerido"),
+      //deadLine: Yup.date().required("Campo requerido"),
+      employee: Yup.string().required("Campo requerido"),
+      budget: Yup.number().required("Campo requerido"),
+      cashAdvance: Yup.number().required("Campo requerido"),
+      phone: Yup.number().required("Campo requerido"),
+    }),
+    onSubmit: (values) => {
+      axios({
+        method: "POST",
+        url: "http://localhost:4001/task/create",
+        data: values,
+      })
+        .then(function (res) {
+          console.log(res);
+          alert("Successfully signed up!");
+        })
+        .catch(function (res) {
+          console.log(res);
+        });
+
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
   return (
-    <Formik
-      initialValues={{
-        title: "",
-        author: "",
-        dateCurrent: new Date(),
-        estimatedTime: 0,
-        description: "",
-        deadLine: new Date(),
-        employee: "",
-        budget: 0,
-        stateOrder: "In Process",
-        cashAdvance: 0,
-        phone: "",
-      }}
-      onSubmit={(values) => {
-        alert(JSON.stringify(values, null, 2));
-      }}
-    >
+    <form onSubmit={formik.handleSubmit}>
       <Flex
         backgroundColor="#f5f4f9"
         flexDirection="column"
@@ -63,48 +100,137 @@ const FormOrder = () => {
               padding="10"
             >
               <Flex gap="5">
-                <InputText
-                  name="title"
-                  lable="Titulo"
-                  placeholder="Escribe un tiutlo..."
-                />
-                <InputText
-                  name="employee"
-                  lable="Empleado a cargo"
-                  placeholder="Nombre del empleado..."
-                />
+                <FormControl>
+                  <FormLabel htmlFor="title">Titulo</FormLabel>
+                  <Input
+                    placeholder="Escribe un tiutlo..."
+                    id="title"
+                    name="title"
+                    type="text"
+                    sx={formStyles.input}
+                    onChange={formik.handleChange}
+                    value={formik.values.title}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="employee">Empleado a cargo</FormLabel>
+                  <Input
+                    placeholder="Nombre del empleado..."
+                    id="employee"
+                    name="employee"
+                    type="text"
+                    sx={formStyles.input}
+                    onChange={formik.handleChange}
+                    value={formik.values.employee}
+                  />
+                </FormControl>
               </Flex>
               <Flex gap="4">
-                <InputDescription
-                  lable="Descripción"
-                  placeholder="Escribe un mensaje..."
-                />
+                <FormControl>
+                  <FormLabel>Descripción</FormLabel>
+                  <Textarea
+                    id="description"
+                    name="description"
+                    placeholder="Escribe un mensaje..."
+                    sx={formStyles.inputDescription}
+                    onChange={formik.handleChange}
+                    value={formik.values.description}
+                  />
+                </FormControl>
               </Flex>
-              <SubTitle lable="DATOS DEL CLIENTE" gap={3} />
+              <SubTitle name="DATOS DEL CLIENTE" gap={3} />
               <Flex gap="4">
-                <InputText
-                  name="author"
-                  lable="Nombre del cliente"
-                  placeholder="Nombre y apellido..."
-                />
-                <InputPhone
-                  lable="Número de teléfono"
-                  placeholder="Número de teléfono..."
-                />
+                <FormControl>
+                  <FormLabel htmlFor="author">Nombre del cliente</FormLabel>
+                  <Input
+                    placeholder="Nombre y apellido..."
+                    id="author"
+                    name="author"
+                    type="text"
+                    sx={formStyles.input}
+                    onChange={formik.handleChange}
+                    value={formik.values.author}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="phone">Número de teléfono</FormLabel>
+                  <Input
+                    placeholder="Número de teléfono..."
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    sx={formStyles.input}
+                    onChange={formik.handleChange}
+                    value={formik.values.phone}
+                  />
+                </FormControl>
               </Flex>
-              <SubTitle lable="DATOS DEL PLAZO" gap={3} />
+              <SubTitle name="DATOS DEL PLAZO" gap={3} />
               <Flex gap="5">
-                <InputDate text="Fecha de ingreso" />
-                <SelectEstimated lable="Tiempo estimado" />
-                <InputDate text="Fecha de entrega" />
+                <FormControl>
+                  <FormLabel>Fecha de ingreso</FormLabel>
+                  <Input
+                    id="currentDate"
+                    name="currentDate"
+                    type="datetime-local"
+                    sx={formStyles.inputDescription}
+                    value={formatDateAsDatetimeString(new Date())}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Tiempo estimado</FormLabel>
+                  <Select
+                    id="estimatedTime"
+                    name="estimatedTime"
+                    placeholder="Select option"
+                    sx={formStyles.inputDescription}
+                    onChange={formik.handleChange}
+                  >
+                    <option value="1">1 Dia</option>
+                    <option value="2"> 2 - 3 Dias</option>
+                    <option value="3"> 4 - 7 Dias</option>
+                    <option value="4"> 8 - 10 Dias</option>
+                    {}
+                  </Select>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Fecha de entrega</FormLabel>
+                  <Input
+                    id="deadLine"
+                    name="deadLine"
+                    type="datetime-local"
+                    sx={formStyles.inputDescription}
+                    onChange={formik.handleChange}
+                    value={formik.values.deadLine}
+                  />
+                </FormControl>
               </Flex>
-              <SubTitle lable="PRESUPUESTO" gap={3} />
+              <SubTitle name="PRESUPUESTO" gap={3} />
               <Flex gap="4">
-                <InputNumber lable="Seña" placeholder="Escribe un valor..." />
-                <InputNumber
-                  lable="Número de presupuesto"
-                  placeholder="Número un número..."
-                />
+                <FormControl>
+                  <FormLabel htmlFor="cashAdvance">Seña</FormLabel>
+                  <Input
+                    placeholder="Escribe un valor..."
+                    id="cashAdvance"
+                    name="cashAdvance"
+                    type="number"
+                    sx={formStyles.input}
+                    onChange={formik.handleChange}
+                    value={formik.values.cashAdvance}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="budget">Número de presupuesto</FormLabel>
+                  <Input
+                    placeholder="Número un presupuesto..."
+                    id="budget"
+                    name="budget"
+                    type="number"
+                    sx={formStyles.input}
+                    onChange={formik.handleChange}
+                    value={formik.values.budget}
+                  />
+                </FormControl>
               </Flex>
             </Flex>
           </Flex>
@@ -114,7 +240,7 @@ const FormOrder = () => {
           </Flex>
         </Flex>
       </Flex>
-    </Formik>
+    </form>
   );
 };
 

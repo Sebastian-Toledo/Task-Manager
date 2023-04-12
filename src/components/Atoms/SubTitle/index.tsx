@@ -1,7 +1,7 @@
 import { Flex, Text, Divider } from "@chakra-ui/react";
 
 interface Props {
-  lable: string;
+  name: string;
   gap: number;
 }
 
@@ -9,7 +9,7 @@ const SubTitle = (props: Props) => {
   return (
     <Flex flexDir="column" gap={props.gap}>
       <Text as="b" color="gray.400">
-        {props.lable}
+        {props.name}
       </Text>
       <Divider border="1px" color="gray.300" />
     </Flex>

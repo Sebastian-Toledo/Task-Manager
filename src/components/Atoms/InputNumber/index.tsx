@@ -2,7 +2,7 @@ import { FormLabel, FormControl, Input } from "@chakra-ui/react";
 import { ChangeEvent, useState } from "react";
 
 interface Props {
-  lable: string;
+  name: string;
   placeholder: string;
   value?: number;
   disabled?: boolean;
@@ -16,7 +16,7 @@ const InputNumber = (props: Props) => {
   };
   return (
     <FormControl>
-      <FormLabel>{props.lable}</FormLabel>
+      <FormLabel>{props.name}</FormLabel>
       <Input
         placeholder={props.placeholder}
         onChange={handleNumber}
