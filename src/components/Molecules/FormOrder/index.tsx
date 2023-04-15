@@ -58,14 +58,12 @@ const FormOrder = () => {
       })
         .then(function (res) {
           console.log(res);
-          alert("Successfully signed up!");
         })
         .catch(function (res) {
           console.log(res);
-          alert("Hubo un problema con la subida detas");
-        });
-
-      alert(JSON.stringify(values, null, 2));
+          alert("Hubo un problema con la subida de datos");
+        })
+        .finally(() => (window.location.href = "http://localhost:3000/"));
     },
   });
   return (
@@ -110,6 +108,7 @@ const FormOrder = () => {
                     sx={formStyles.input}
                     onChange={formik.handleChange}
                     value={formik.values.title}
+                    required
                   />
                 </FormControl>
                 <FormControl>
@@ -122,6 +121,7 @@ const FormOrder = () => {
                     sx={formStyles.input}
                     onChange={formik.handleChange}
                     value={formik.values.employee}
+                    required
                   />
                 </FormControl>
               </Flex>
@@ -135,6 +135,7 @@ const FormOrder = () => {
                     sx={formStyles.inputDescription}
                     onChange={formik.handleChange}
                     value={formik.values.description}
+                    required
                   />
                 </FormControl>
               </Flex>
@@ -150,6 +151,7 @@ const FormOrder = () => {
                     sx={formStyles.input}
                     onChange={formik.handleChange}
                     value={formik.values.author}
+                    required
                   />
                 </FormControl>
                 <FormControl>
@@ -162,6 +164,7 @@ const FormOrder = () => {
                     sx={formStyles.input}
                     onChange={formik.handleChange}
                     value={formik.values.phone}
+                    required
                   />
                 </FormControl>
               </Flex>
@@ -173,7 +176,10 @@ const FormOrder = () => {
                     id="currentDate"
                     name="currentDate"
                     type="datetime-local"
+                    max={formik.values.dateCurrent}
                     sx={formStyles.inputDescription}
+                    value={formik.values.dateCurrent}
+                    required
                   />
                 </FormControl>
                 <FormControl>
@@ -185,6 +191,7 @@ const FormOrder = () => {
                     sx={formStyles.inputDescription}
                     onChange={formik.handleChange}
                     value={formik.values.estimatedTime}
+                    required
                   >
                     <option value="1">1 Dia</option>
                     <option value="2"> 2 - 3 Dias</option>
@@ -199,9 +206,11 @@ const FormOrder = () => {
                     id="deadLine"
                     name="deadLine"
                     type="datetime-local"
+                    min={formik.values.deadLine}
                     sx={formStyles.inputDescription}
                     onChange={formik.handleChange}
                     value={formik.values.deadLine}
+                    required
                   />
                 </FormControl>
               </Flex>
@@ -217,6 +226,7 @@ const FormOrder = () => {
                     sx={formStyles.input}
                     onChange={formik.handleChange}
                     value={formik.values.cashAdvance}
+                    required
                   />
                 </FormControl>
                 <FormControl>
@@ -229,6 +239,7 @@ const FormOrder = () => {
                     sx={formStyles.input}
                     onChange={formik.handleChange}
                     value={formik.values.budget}
+                    required
                   />
                 </FormControl>
               </Flex>
@@ -245,3 +256,7 @@ const FormOrder = () => {
 };
 
 export default FormOrder;
+
+// npm install formik --save
+// npm i yup
+// npm i axios

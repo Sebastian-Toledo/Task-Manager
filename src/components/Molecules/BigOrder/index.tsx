@@ -45,7 +45,6 @@ const BigOrder = (props: Props) => {
     phone,
   } = props.order;
   console.log(props.order);
-  const [getState, setState] = useState(stateOrder);
   const formik = useFormik({
     initialValues: {
       title: title,
@@ -68,13 +67,13 @@ const BigOrder = (props: Props) => {
       })
         .then(function (res) {
           console.log(res);
-          alert("Successfully signed up!");
+          window.location.href = "http://localhost:3000/";
         })
         .catch(function (res) {
+          alert("Hubo un problema");
           console.log(res);
-        });
-
-      alert(JSON.stringify(values, null, 2));
+        })
+        .finally(() => (window.location.href = "http://localhost:3000/"));
     },
   });
   return (
