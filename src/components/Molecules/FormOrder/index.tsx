@@ -53,7 +53,7 @@ const FormOrder = () => {
     onSubmit: (values) => {
       axios({
         method: "POST",
-        url: "http://192.168.1.175:4001/task/create",
+        url: "http://192.168.0.10:4001/task/create",
         data: values,
       })
         .then(function (res) {
@@ -63,7 +63,7 @@ const FormOrder = () => {
           console.log(res);
           alert("Hubo un problema con la subida de datos");
         })
-        .finally(() => (window.location.href = "http://192.168.1.175:3000"));
+        .finally(() => (window.location.href = "http://192.168.0.10:3000"));
     },
   });
   return (

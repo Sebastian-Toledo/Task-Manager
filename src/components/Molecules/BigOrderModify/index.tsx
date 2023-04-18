@@ -63,7 +63,7 @@ const BigOrderModify = (props: Props) => {
     onSubmit: (values) => {
       axios({
         method: "PUT",
-        url: `http://localhost:4001/task/${_id}`,
+        url: `http://192.168.0.10:4001/task/${_id}`,
         data: values,
       })
         .then(function (res) {
