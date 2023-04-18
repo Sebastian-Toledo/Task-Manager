@@ -62,18 +62,18 @@ const BigOrder = (props: Props) => {
     onSubmit: (values) => {
       axios({
         method: "PUT",
-        url: `http://localhost:4001/task/${_id}`,
+        url: `http://192.168.1.175:4001/task/${_id}`,
         data: values,
       })
         .then(function (res) {
           console.log(res);
-          window.location.href = "http://localhost:3000/";
+          window.location.href = "http://192.168.1.175:3000";
         })
         .catch(function (res) {
           alert("Hubo un problema");
           console.log(res);
         })
-        .finally(() => (window.location.href = "http://localhost:3000/"));
+        .finally(() => (window.location.href = "http://192.168.1.175:3000"));
     },
   });
   return (

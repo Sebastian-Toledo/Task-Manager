@@ -15,7 +15,6 @@ const OrderPage = () => {
       .then((response) => response.json())
       .then((order) => setOrder(order));
   }, []);
-  console.log(order);
   if (!order) {
     return <OrderPlaceholder />;
   }

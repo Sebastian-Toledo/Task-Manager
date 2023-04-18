@@ -27,6 +27,12 @@ const ListOrder = () => {
   const [getSelect, setSelect] = useState("Cliente");
   const [placement, setPlacement] = useState("In Process");
 
+  // const showDate = async () => {
+  //   const response = await fetch(`${HOST}/task`);
+  //   const data: Order[] = await response.json();
+  //   setOrders(data);
+  // };
+
   useEffect(() => {
     fetch(`${HOST}/task`)
       .then((response) => response.json())
@@ -58,16 +64,8 @@ const ListOrder = () => {
     );
   };
 
-  const renderContent = () => {
-    if (!getOrders.length) {
-      return [0, 1, 2].map((item) => <OrderPlaceholder key={item} />);
-    }
-    //console.log(getOrders.filter(filterTasks).map(renderOrder));
-    return getOrders.filter(filterTasks).map(renderOrder);
-  };
-
   const stateFilter = (order: Order) => {
-    //console.log(order.stateOrder, "  ", getEmployee);
+    console.log(order.stateOrder.includes(placement));
     switch (placement) {
       case "In Process":
         return order.stateOrder.includes(placement);
@@ -82,16 +80,24 @@ const ListOrder = () => {
 
   const filterTasks = (order: Order) => {
     if (
-      order.stateOrder === "In Process" &&
+      order.stateOrder === placement &&
       getAuthor === " " &&
       getEmployee === " "
     ) {
-      //console.log("entra");
+      console.log("entra ", stateFilter(order));
       return stateFilter(order);
     } else {
       console.log(changeInput(order) && stateFilter(order));
       return changeInput(order) && stateFilter(order);
     }
+  };
+
+  const renderContent = () => {
+    if (!getOrders.length) {
+      return [0, 1, 2].map((item) => <OrderPlaceholder key={item} />);
+    }
+    //console.log(getOrders.filter(filterTasks).map(renderOrder));
+    return getOrders.filter(filterTasks).map(renderOrder);
   };
 
   return (

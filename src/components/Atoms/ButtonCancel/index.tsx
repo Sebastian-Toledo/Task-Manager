@@ -11,7 +11,7 @@ const ButtonCancel = () => {
       w="175px"
       onClick={(e) => {
         e.preventDefault();
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "http://192.168.1.175:3000";
       }}
     >
       Cancelar
