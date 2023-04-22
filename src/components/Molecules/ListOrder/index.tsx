@@ -10,6 +10,7 @@ import {
   RadioGroup,
   Select,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import Order from "../../../Type/Order";
 import { useState, useEffect } from "react";
@@ -19,11 +20,12 @@ import { AiFillFileAdd } from "react-icons/ai";
 import Routes from "../../../Router/Routes";
 import { Heading } from "@chakra-ui/react";
 import { HOST } from "../../../utils/envirementConfiguration";
+import cardOrderStyles from "../../Atoms/CardOrder/styles";
 
 const ListOrder = () => {
   const [getOrders, setOrders] = useState<Order[]>([]);
-  const [getAuthor, setAuthor] = useState(" ");
-  const [getEmployee, setEmployee] = useState(" ");
+  const [getAuthor, setAuthor] = useState("");
+  const [getEmployee, setEmployee] = useState("");
   const [getSelect, setSelect] = useState("Cliente");
   const [placement, setPlacement] = useState("In Process");
 
@@ -44,17 +46,17 @@ const ListOrder = () => {
   const onChange = (event: any) => {
     if (getSelect === "Empleado") {
       setEmployee(event.currentTarget.value);
-    } else if (getSelect === "Cliente") {
+    }
+    if (getSelect === "Cliente") {
       setAuthor(event.currentTarget.value);
     }
-    //console.log(event.currentTarget.value);
-    // console.log(getSelect);
   };
 
   const changeInput = (order: Order) => {
-    if (getSelect === "Cliente") {
+    if (getSelect === "Cliente")
       return order.author.toLowerCase().includes(getAuthor.toLowerCase());
-    } else if (getSelect === "Empleado")
+
+    if (getSelect === "Empleado")
       return order.employee.toLowerCase().includes(getEmployee.toLowerCase());
   };
 
@@ -81,8 +83,8 @@ const ListOrder = () => {
   const filterTasks = (order: Order) => {
     if (
       order.stateOrder === placement &&
-      getAuthor === " " &&
-      getEmployee === " "
+      getAuthor === "" &&
+      getEmployee === ""
     ) {
       console.log("entra ", stateFilter(order));
       return stateFilter(order);
@@ -96,12 +98,11 @@ const ListOrder = () => {
     if (!getOrders.length) {
       return [0, 1, 2].map((item) => <OrderPlaceholder key={item} />);
     }
-    //console.log(getOrders.filter(filterTasks).map(renderOrder));
     return getOrders.filter(filterTasks).map(renderOrder);
   };
 
   return (
-    <Flex flexDirection="column" gap="5">
+    <Flex flexDirection="column" gap="5" maxW="75%">
       <Flex backgroundColor="white" flexDirection="column" gap="2" padding="5">
         <Heading alignSelf="center" paddingBottom="2">
           Menu
@@ -145,6 +146,15 @@ const ListOrder = () => {
       <List paddingBottom="2" paddingTop="2">
         <ListItem backgroundColor="white" alignItems="center" padding="2">
           <Divider height="2px" />
+          <Flex gap="3" sx={cardOrderStyles.cardCharacteristics}>
+            <Text>Titulo</Text>
+            <Text>Cliente</Text>
+            <Text>Fecha Ingreso</Text>
+            <Text>Fecha Limite</Text>
+            <Text>Estado</Text>
+            <Text>Empleado</Text>
+            <Text>Presupuesto</Text>
+          </Flex>
           {renderContent()}
         </ListItem>
       </List>

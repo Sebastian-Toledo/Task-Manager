@@ -22,6 +22,7 @@ import formStyles from "./styles";
 import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
 import axios from "axios";
 import * as Yup from "yup";
+import { HOST, IP } from "../../../utils/envirementConfiguration";
 
 const FormOrder = () => {
   const formik = useFormik({
@@ -53,7 +54,7 @@ const FormOrder = () => {
     onSubmit: (values) => {
       axios({
         method: "POST",
-        url: "http://192.168.0.10:4001/task/create",
+        url: `${HOST}/task/create`,
         data: values,
       })
         .then(function (res) {
@@ -63,7 +64,7 @@ const FormOrder = () => {
           console.log(res);
           alert("Hubo un problema con la subida de datos");
         })
-        .finally(() => (window.location.href = "http://192.168.0.10:3000"));
+        .finally(() => (window.location.href = `http://${IP}:3000`));
     },
   });
   return (

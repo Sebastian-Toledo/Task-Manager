@@ -24,6 +24,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
 import axios from "axios";
+import { HOST, IP } from "../../../utils/envirementConfiguration";
 
 interface Props {
   order: Order;
@@ -62,18 +63,18 @@ const BigOrder = (props: Props) => {
     onSubmit: (values) => {
       axios({
         method: "PUT",
-        url: `http://192.168.0.10:4001/task/${_id}`,
+        url: `http://${HOST}/task/${_id}`,
         data: values,
       })
         .then(function (res) {
           console.log(res);
-          window.location.href = "http://192.168.0.10:3000";
+          window.location.href = `http://${IP}:3000`;
         })
         .catch(function (res) {
           alert("Hubo un problema");
           console.log(res);
         })
-        .finally(() => (window.location.href = "http://192.168.0.10:3000"));
+        .finally(() => (window.location.href = `http://${IP}:3000`));
     },
   });
   return (

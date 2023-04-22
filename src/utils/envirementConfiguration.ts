@@ -1,3 +1,5 @@
-const HOST = "http://192.168.0.10:4001";
+const IP = `192.168.1.175`;
 
-export { HOST };
+const HOST = `http://${IP}:4001`;
+
+export { HOST, IP };

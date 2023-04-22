@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/react";
+import { IP } from "../../../utils/envirementConfiguration";
 
 const ButtonCancel = () => {
   return (
@@ -11,7 +12,7 @@ const ButtonCancel = () => {
       w="175px"
       onClick={(e) => {
         e.preventDefault();
-        window.location.href = "http://192.168.0.10:3000";
+        window.location.href = `http://${IP}:3000`;
       }}
     >
       Cancelar
