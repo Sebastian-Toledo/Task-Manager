@@ -20,7 +20,6 @@ import InputDate from "../../Atoms/InputDate/Index";
 import NavItem from "../../Atoms/NavItem";
 import Routes from "../../../Router/Routes";
 import { AddIcon } from "@chakra-ui/icons";
-import { useState } from "react";
 import { useFormik } from "formik";
 import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
 import axios from "axios";
