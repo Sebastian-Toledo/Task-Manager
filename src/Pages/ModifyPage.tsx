@@ -11,7 +11,7 @@ const ModifyPage = () => {
   const [orderModify, setOrderModify] = useState<Order>();
 
   useEffect(() => {
-    fetch(`${HOST}/task/${orderId}`)
+    fetch(`http://${HOST}/task/${orderId}`)
       .then((response) => response.json())
       .then((order) => setOrderModify(order));
   }, []);

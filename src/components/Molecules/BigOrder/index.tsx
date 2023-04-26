@@ -72,6 +72,7 @@ const BigOrder = (props: Props) => {
         .catch(function (res) {
           alert("Hubo un problema");
           console.log(res);
+          console.log(`http://${HOST}/task/${_id}`);
         })
         .finally(() => (window.location.href = `http://${IP}:3000`));
     },

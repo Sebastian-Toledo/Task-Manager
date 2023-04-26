@@ -1,4 +1,4 @@
-import { Flex, Card, Text, Divider, CardBody } from "@chakra-ui/react";
+import { Flex, Card, Divider, CardBody } from "@chakra-ui/react";
 import Order from "../../../Type/Order";
 import cardOrderStyles from "./styles";
 import Routes from "../../../Router/Routes";

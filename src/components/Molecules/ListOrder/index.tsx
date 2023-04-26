@@ -21,6 +21,7 @@ import Routes from "../../../Router/Routes";
 import { Heading } from "@chakra-ui/react";
 import { HOST } from "../../../utils/envirementConfiguration";
 import cardOrderStyles from "../../Atoms/CardOrder/styles";
+import CompletedTasks from "../../Atoms/CompletedTasks";
 
 const ListOrder = () => {
   const [getOrders, setOrders] = useState<Order[]>([]);
@@ -36,7 +37,7 @@ const ListOrder = () => {
   // };
 
   useEffect(() => {
-    fetch(`${HOST}/task`)
+    fetch(`http://${HOST}/task`)
       .then((response) => response.json())
       .then((orderss: Order[]) => {
         setOrders(orderss);
@@ -97,6 +98,8 @@ const ListOrder = () => {
   const renderContent = () => {
     if (!getOrders.length) {
       return [0, 1, 2].map((item) => <OrderPlaceholder key={item} />);
+    } else if (0 === getOrders.filter(filterTasks).length) {
+      return CompletedTasks(placement);
     }
     return getOrders.filter(filterTasks).map(renderOrder);
   };

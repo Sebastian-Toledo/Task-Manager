@@ -15,7 +15,7 @@ import SubTitle from "../../Atoms/SubTitle";
 import NavItem from "../../Atoms/NavItem";
 import Routes from "../../../Router/Routes";
 import { EditIcon } from "@chakra-ui/icons";
-import { ErrorMessage, useFormik } from "formik";
+import { useFormik } from "formik";
 import formStyles from "./styles";
 import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
 import axios from "axios";
@@ -52,7 +52,7 @@ const FormOrder = () => {
     onSubmit: (values) => {
       axios({
         method: "POST",
-        url: `${HOST}/task/create`,
+        url: `http://${HOST}/task/create`,
         data: values,
       })
         .then(function (res) {

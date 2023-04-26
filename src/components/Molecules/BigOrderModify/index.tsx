@@ -26,6 +26,7 @@ import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
 import axios from "axios";
 import formStyles from "../FormOrder/styles";
 import { EditIcon } from "@chakra-ui/icons";
+import { HOST } from "../../../utils/envirementConfiguration";
 
 interface Props {
   order: Order;
@@ -63,7 +64,7 @@ const BigOrderModify = (props: Props) => {
     onSubmit: (values) => {
       axios({
         method: "PUT",
-        url: `http://192.168.1.175:4001/task/${_id}`,
+        url: `http://${HOST}/task/${_id}`,
         data: values,
       })
         .then(function (res) {

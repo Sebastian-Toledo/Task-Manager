@@ -1,5 +1,9 @@
-const IP = `192.168.1.175`;
+const IP = `${process.env.REACT_APP_URL}`;
 
-const HOST = `http://${IP}:4001`;
+console.log(`${process.env.REACT_APP_URL}`);
+console.log(`${IP}`);
+
+const HOST = `${IP}:4001`;
+console.log(`${HOST}`);
 
 export { HOST, IP };
