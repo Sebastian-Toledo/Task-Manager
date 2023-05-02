@@ -27,6 +27,8 @@ const InputDate = ({ disabled, value, text }: Props) => {
     <FormControl>
       <FormLabel>{text}</FormLabel>
       <Input
+        bgColor="black"
+        color="white"
         type="datetime-local"
         border="1px"
         borderColor="gray"

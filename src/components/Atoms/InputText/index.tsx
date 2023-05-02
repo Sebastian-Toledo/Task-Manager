@@ -1,7 +1,5 @@
 import { FormControl, FormLabel, Input } from "@chakra-ui/react";
-import { ChangeEvent, useState } from "react";
 import input from "./styles";
-import { Field } from "formik";
 
 interface Props {
   name?: string;
@@ -11,12 +9,6 @@ interface Props {
 }
 
 const InputText = (props: Props) => {
-  const [getText, setText] = useState(props.value);
-
-  const handleEvent = (e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
-
   return (
     <FormControl>
       <FormLabel htmlFor="text">{props.name}</FormLabel>

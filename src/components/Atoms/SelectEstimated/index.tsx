@@ -12,6 +12,8 @@ const SelectEstimated = (props: Props) => {
       <FormLabel>{props.name}</FormLabel>
       <Select
         disabled={props.disabled}
+        bgColor="black"
+        color="white"
         placeholder="Select option"
         border="1px"
         borderColor="gray"

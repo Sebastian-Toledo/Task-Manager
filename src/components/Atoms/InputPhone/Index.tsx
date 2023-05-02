@@ -19,6 +19,8 @@ const InputPhone = (props: Props) => {
       <FormLabel>{props.name}</FormLabel>
       <Input
         disabled={props.disabled}
+        bgColor="black"
+        color="white"
         border="1px"
         borderColor="gray"
         borderRadius="1px"

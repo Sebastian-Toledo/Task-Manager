@@ -20,6 +20,8 @@ const InputDescription = (props: Props) => {
       <FormLabel>{props.name}</FormLabel>
       <Textarea
         disabled={props.disabled}
+        bgColor="black"
+        color="white"
         border="1px"
         borderColor="gray"
         borderRadius="1px"

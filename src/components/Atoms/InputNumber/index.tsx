@@ -20,6 +20,8 @@ const InputNumber = (props: Props) => {
       <Input
         placeholder={props.placeholder}
         onChange={handleNumber}
+        bgColor="black"
+        color="white"
         border="1px"
         borderColor="gray"
         borderRadius="1px"
