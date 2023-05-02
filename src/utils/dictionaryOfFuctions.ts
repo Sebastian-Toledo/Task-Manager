@@ -1,5 +1,3 @@
-import Order from "../Type/Order";
-
 const dictionary = {
   daysToLimit: function (limit: Date) {
     const currentDate = new Date();
