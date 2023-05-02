@@ -68,12 +68,9 @@ const BigOrderModify = (props: Props) => {
         data: values,
       })
         .then(function (res) {
-          console.log(res);
           alert("Successfully signed up!");
         })
-        .catch(function (res) {
-          console.log(res);
-        });
+        .catch(function (res) {});
 
       alert(JSON.stringify(values, null, 2));
     },

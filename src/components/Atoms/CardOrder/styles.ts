@@ -4,7 +4,7 @@ const cardOrderStyles = {
     borderColor: "#a0aec075",
     display: "flex",
     flexDirection: "row",
-    padding: "4",
+    padding: "2",
     gap: "4",
     justifyContent: "space-between",
   },
@@ -26,8 +26,7 @@ const cardOrderStyles = {
     alignText: "center",
     borderColor: "#a0aec075",
     display: "flex",
-    padding: "4",
-    gap: "4",
+    padding: "2",
     justifyContent: "space-between",
   },
 };

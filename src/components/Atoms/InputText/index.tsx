@@ -14,9 +14,7 @@ const InputText = (props: Props) => {
   const [getText, setText] = useState(props.value);
 
   const handleEvent = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("hola");
     setText(e.target.value);
-    console.log("hola", getText);
   };
 
   return (

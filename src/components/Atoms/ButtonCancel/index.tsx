@@ -11,7 +11,6 @@ const ButtonCancel = () => {
       size="lg"
       w="175px"
       onClick={(e) => {
-        console.log(e.preventDefault());
         e.preventDefault();
         window.location.href = `http://${IP}:3000`;
       }}

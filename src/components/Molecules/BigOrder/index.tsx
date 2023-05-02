@@ -66,12 +66,10 @@ const BigOrder = (props: Props) => {
         data: values,
       })
         .then(function (res) {
-          console.log(res);
           window.location.href = `http://${IP}:3000`;
         })
         .catch(function (res) {
           alert("Hubo un problema");
-          console.log(res);
           console.log(`http://${HOST}/task/${_id}`);
         })
         .finally(() => (window.location.href = `http://${IP}:3000`));

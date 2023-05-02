@@ -30,12 +30,6 @@ const ListOrder = () => {
   const [getSelect, setSelect] = useState("Cliente");
   const [placement, setPlacement] = useState("In Process");
 
-  // const showDate = async () => {
-  //   const response = await fetch(`${HOST}/task`);
-  //   const data: Order[] = await response.json();
-  //   setOrders(data);
-  // };
-
   useEffect(() => {
     fetch(`http://${HOST}/task`)
       .then((response) => response.json())
@@ -68,7 +62,6 @@ const ListOrder = () => {
   };
 
   const stateFilter = (order: Order) => {
-    console.log(order.stateOrder.includes(placement));
     switch (placement) {
       case "In Process":
         return order.stateOrder.includes(placement);
@@ -87,10 +80,8 @@ const ListOrder = () => {
       getAuthor === "" &&
       getEmployee === ""
     ) {
-      console.log("entra ", stateFilter(order));
       return stateFilter(order);
     } else {
-      console.log(changeInput(order) && stateFilter(order));
       return changeInput(order) && stateFilter(order);
     }
   };
@@ -149,14 +140,38 @@ const ListOrder = () => {
       <List paddingBottom="2" paddingTop="2">
         <ListItem backgroundColor="white" alignItems="center" padding="2">
           <Divider height="2px" />
-          <Flex gap="3" sx={cardOrderStyles.cardCharacteristics}>
-            <Text>Titulo</Text>
-            <Text>Cliente</Text>
-            <Text>Fecha Ingreso</Text>
-            <Text>Fecha Limite</Text>
-            <Text>Estado</Text>
-            <Text>Empleado</Text>
-            <Text>Presupuesto</Text>
+          <Flex gap="5" sx={cardOrderStyles.cardCharacteristics}>
+            <Flex>
+              <Text as="b" ml="2">
+                Titulo
+              </Text>
+            </Flex>
+            <Flex>
+              <Text as="b" ml="10">
+                Cliente
+              </Text>
+            </Flex>
+            <Flex as="b" ml="4">
+              <Text>Fecha Ingreso</Text>
+            </Flex>
+            <Flex>
+              <Text as="b">Fecha Limite</Text>
+            </Flex>
+            <Flex>
+              <Text as="b" ml="2">
+                Estado
+              </Text>
+            </Flex>
+            <Flex>
+              <Text as="b" ml="2">
+                Empleado
+              </Text>
+            </Flex>
+            <Flex>
+              <Text as="b" mr="2">
+                Presupuesto
+              </Text>
+            </Flex>
           </Flex>
           {renderContent()}
         </ListItem>
