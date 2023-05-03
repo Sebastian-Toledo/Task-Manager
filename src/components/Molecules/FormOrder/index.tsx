@@ -33,7 +33,7 @@ const FormOrder = () => {
       deadLine: formatDateAsDatetimeString(new Date()),
       employee: "",
       budget: 0,
-      stateOrder: "In Process",
+      stateOrder: "En Proceso",
       cashAdvance: 0,
       phone: 0,
     },
@@ -112,16 +112,23 @@ const FormOrder = () => {
                 </FormControl>
                 <FormControl>
                   <FormLabel htmlFor="employee">Empleado a cargo</FormLabel>
-                  <Input
-                    placeholder="Nombre del empleado..."
+                  <Select
                     id="employee"
                     name="employee"
-                    type="text"
-                    sx={formStyles.input}
+                    sx={formStyles.inputDescription}
                     onChange={formik.handleChange}
                     value={formik.values.employee}
+                    placeholder="Seleccione Empleado"
                     required
-                  />
+                  >
+                    <option value="Ilay"> Ilay</option>
+                    <option value="Vero"> Vero</option>
+                    <option value="Gabi"> Gabi</option>
+                    <option value="Dario"> Dario</option>
+                    <option value="Flor"> Flor</option>
+                    <option value="Fran"> Fran</option>
+                    {}
+                  </Select>
                 </FormControl>
               </Flex>
               <Flex gap="4">
@@ -186,16 +193,17 @@ const FormOrder = () => {
                   <Select
                     id="estimatedTime"
                     name="estimatedTime"
-                    placeholder="Select option"
+                    placeholder="Seleccione una Opcion"
                     sx={formStyles.inputDescription}
                     onChange={formik.handleChange}
                     value={formik.values.estimatedTime}
                     required
                   >
-                    <option value="1">1 Dia</option>
-                    <option value="2"> 2 - 3 Dias</option>
-                    <option value="3"> 4 - 7 Dias</option>
-                    <option value="4"> 8 - 10 Dias</option>
+                    <option value="1"> 1 - 3 Dias</option>
+                    <option value="2"> 4 - 7 Dias</option>
+                    <option value="3"> 7 - 10 Dias</option>
+                    <option value="4"> 13 - 20 Dias</option>
+                    <option value="5"> 22 - 30 Dias</option>
                     {}
                   </Select>
                 </FormControl>

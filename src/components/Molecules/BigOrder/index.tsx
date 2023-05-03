@@ -119,10 +119,10 @@ const BigOrder = (props: Props) => {
                   value={formik.values.stateOrder}
                   onChange={formik.handleChange}
                 >
-                  <option value="In Process">En Proceso</option>
-                  <option value="Finished"> Terminado</option>
-                  <option value="Delivered"> Entregado</option>
-                  <option value="Canceled"> Anulado</option>
+                  <option value="En Proceso">En Proceso</option>
+                  <option value="Terminados"> Terminados</option>
+                  <option value="Entregados"> Entregados</option>
+                  <option value="Anulados"> Anulados</option>
                   {}
                 </Select>
               </FormControl>

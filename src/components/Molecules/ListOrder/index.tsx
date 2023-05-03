@@ -28,7 +28,7 @@ const ListOrder = () => {
   const [getAuthor, setAuthor] = useState("");
   const [getEmployee, setEmployee] = useState("");
   const [getSelect, setSelect] = useState("Cliente");
-  const [placement, setPlacement] = useState("In Process");
+  const [placement, setPlacement] = useState("En Proceso");
 
   useEffect(() => {
     fetch(`http://${HOST}/task`)
@@ -62,15 +62,28 @@ const ListOrder = () => {
   };
 
   const stateFilter = (order: Order) => {
+    console.log();
     switch (placement) {
-      case "In Process":
-        return order.stateOrder.includes(placement);
-      case "Finished":
-        return order.stateOrder.includes(placement);
-      case "Delivered":
-        return order.stateOrder.includes(placement);
-      case "Canceled":
-        return order.stateOrder.includes(placement);
+      case "En Proceso":
+        return (
+          order.stateOrder.includes(placement) ||
+          order.stateOrder.includes("In Process")
+        );
+      case "Terminados":
+        return (
+          order.stateOrder.includes(placement) ||
+          order.stateOrder.includes("Finished")
+        );
+      case "Entregados":
+        return (
+          order.stateOrder.includes(placement) ||
+          order.stateOrder.includes("Delivered")
+        );
+      case "Anulados":
+        return (
+          order.stateOrder.includes(placement) ||
+          order.stateOrder.includes("Canceled")
+        );
     }
   };
 
@@ -104,10 +117,10 @@ const ListOrder = () => {
         <Divider />
         <RadioGroup defaultValue={placement} onChange={setPlacement}>
           <Stack direction="row" mb="4" gap="5">
-            <Radio value="In Process">En Proceso</Radio>
-            <Radio value="Finished">Terminados</Radio>
-            <Radio value="Delivered">Entregados</Radio>
-            <Radio value="Canceled">Anulados</Radio>
+            <Radio value="En Proceso">En Proceso</Radio>
+            <Radio value="Terminados">Terminados</Radio>
+            <Radio value="Entregados">Entregados</Radio>
+            <Radio value="Anulados">Anulados</Radio>
             <Center height="50px" gap="10" paddingLeft="10">
               <Divider orientation="vertical" />
               <NavItem key="CREATE" icon={AiFillFileAdd} to={Routes.CREATE}>

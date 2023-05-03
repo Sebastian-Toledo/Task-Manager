@@ -44,6 +44,10 @@ const CardOrder = (props: Props) => {
     const currentDate = new Date();
     const a = Math.round((d.getTime() - currentDate.getTime()) / 86400000);
 
+    // switch(){
+
+    // }
+
     if (a >= 3 && a <= 5 && props.order.stateOrder !== "Delivered") {
       setbgIndex(2);
       setTextIndex(5);
@@ -54,22 +58,22 @@ const CardOrder = (props: Props) => {
       setStateIndex(5);
     } else if (a > 9999 || a > -9999) {
       switch (props.order.stateOrder) {
-        case "In Process":
+        case "In Process" || "En Proceso":
           setbgIndex(5);
           setTextIndex(3);
           setStateIndex(2);
           break;
-        case "Finished":
+        case "Finished" || "Entregados":
           setbgIndex(5);
           setTextIndex(3);
           setStateIndex(0);
           break;
-        case "Delivered":
+        case "Delivered" || "Terminados":
           setbgIndex(1);
           setTextIndex(5);
           setStateIndex(5);
           break;
-        case "Canceled":
+        case "Canceled" || "Anulados":
           setbgIndex(5);
           setTextIndex(3);
           setStateIndex(4);

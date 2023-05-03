@@ -23,10 +23,10 @@ const SelectState = (props: Props) => {
         value={getState}
         onChange={() => handleState}
       >
-        <option value="In Process">En Proceso</option>
-        <option value="Finished"> Terminado</option>
-        <option value="Delivered"> Entregado</option>
-        <option value="Canceled"> Anulado</option>
+        <option value={"In Process" || "En Proceso"}>En Proceso</option>
+        <option value={"Finished" || "Terminados"}> Terminados</option>
+        <option value={"Delivered" || "Entregados"}> Entregados</option>
+        <option value={"Canceled" || "Anulados"}> Anulados</option>
         {}
       </Select>
     </FormControl>

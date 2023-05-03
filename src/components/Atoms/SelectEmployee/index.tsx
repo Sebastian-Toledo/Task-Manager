@@ -3,10 +3,10 @@ import { FormControl, FormLabel, Select } from "@chakra-ui/react";
 interface Props {
   name: string;
   disabled?: boolean;
-  value?: number;
+  value?: string;
 }
 
-const SelectEstimated = (props: Props) => {
+const SelectEmployee = (props: Props) => {
   return (
     <FormControl>
       <FormLabel>{props.name}</FormLabel>
@@ -20,15 +20,16 @@ const SelectEstimated = (props: Props) => {
         borderRadius="1px"
         value={props.value}
       >
-        <option value="1"> 1 - 3 Dias</option>
-        <option value="2"> 4 - 7 Dias</option>
-        <option value="3"> 7 - 10 Dias</option>
-        <option value="4"> 13 - 20 Dias</option>
-        <option value="5"> 22 - 30 Dias</option>
+        <option value="Ilay"> Ilay</option>
+        <option value="Vero"> Vero</option>
+        <option value="Gabi"> Gabi</option>
+        <option value="Dario"> Dario</option>
+        <option value="Flor"> Flor</option>
+        <option value="Fran"> Fran</option>
         {}
       </Select>
     </FormControl>
   );
 };
 
-export default SelectEstimated;
+export default SelectEmployee;

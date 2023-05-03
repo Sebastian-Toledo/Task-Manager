@@ -6,9 +6,17 @@ interface Order {
   estimatedTime: number;
   description: string;
   deadLine: Date;
-  employee: string;
+  employee: "Ilay" | "Vero" | "Gabi" | "Dario" | "Flor" | "Fran";
   budget: number;
-  stateOrder: string;
+  stateOrder:
+    | "In Process"
+    | "Finished"
+    | "Delivered"
+    | "Canceled"
+    | "En Proceso"
+    | "Terminados"
+    | "Entregados"
+    | "Anulados";
   comment?: string;
   dateChange?: Date;
   cashAdvance: number;
