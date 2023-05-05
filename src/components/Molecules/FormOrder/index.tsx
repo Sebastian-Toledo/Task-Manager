@@ -28,7 +28,7 @@ const FormOrder = () => {
       title: "",
       author: "",
       dateCurrent: formatDateAsDatetimeString(new Date()),
-      estimatedTime: 0,
+      estimatedTime: 1,
       description: "",
       deadLine: formatDateAsDatetimeString(new Date()),
       employee: "",

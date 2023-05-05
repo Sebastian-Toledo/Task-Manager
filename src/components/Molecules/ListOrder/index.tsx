@@ -1,5 +1,16 @@
 import CardOrder from "../../Atoms/CardOrder";
-import {
+import Order from "../../../Type/Order";
+import { useState, useEffect } from "react";
+import OrderPlaceholder from "../../Atoms/OrderPlaceholder";
+import NavItem from "../../Atoms/NavItem";
+import { AiFillFileAdd } from "react-icons/ai";
+import Routes from "../../../Router/Routes";
+import { HOST } from "../../../utils/envirementConfiguration";
+import cardOrderStyles from "../../Atoms/CardOrder/styles";
+import CompletedTasks from "../../Atoms/CompletedTasks";
+import * as ChakraUI from "@chakra-ui/react";
+
+const {
   Center,
   Divider,
   Flex,
@@ -11,17 +22,8 @@ import {
   Select,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import Order from "../../../Type/Order";
-import { useState, useEffect } from "react";
-import OrderPlaceholder from "../../Atoms/OrderPlaceholder";
-import NavItem from "../../Atoms/NavItem";
-import { AiFillFileAdd } from "react-icons/ai";
-import Routes from "../../../Router/Routes";
-import { Heading } from "@chakra-ui/react";
-import { HOST } from "../../../utils/envirementConfiguration";
-import cardOrderStyles from "../../Atoms/CardOrder/styles";
-import CompletedTasks from "../../Atoms/CompletedTasks";
+  Heading,
+} = ChakraUI;
 
 const ListOrder = () => {
   const [getOrders, setOrders] = useState<Order[]>([]);
@@ -48,11 +50,9 @@ const ListOrder = () => {
   };
 
   const changeInput = (order: Order) => {
-    if (getSelect === "Cliente")
-      return order.author.toLowerCase().includes(getAuthor.toLowerCase());
-
-    if (getSelect === "Empleado")
-      return order.employee.toLowerCase().includes(getEmployee.toLowerCase());
+    return getSelect === "Cliente"
+      ? order.author.toLowerCase().includes(getAuthor.toLowerCase())
+      : order.employee.toLowerCase().includes(getEmployee.toLowerCase());
   };
 
   const renderOrder = (order: Order, index: number) => {
@@ -62,7 +62,6 @@ const ListOrder = () => {
   };
 
   const stateFilter = (order: Order) => {
-    console.log();
     switch (placement) {
       case "En Proceso":
         return (
@@ -100,12 +99,17 @@ const ListOrder = () => {
   };
 
   const renderContent = () => {
+    const OrdersFilters = getOrders.filter(filterTasks);
     if (!getOrders.length) {
       return [0, 1, 2].map((item) => <OrderPlaceholder key={item} />);
-    } else if (0 === getOrders.filter(filterTasks).length) {
+    } else if (0 === OrdersFilters.length) {
       return CompletedTasks(placement);
     }
-    return getOrders.filter(filterTasks).map(renderOrder);
+    OrdersFilters.sort(
+      (a, b) =>
+        new Date(b.dateCurrent).getTime() - new Date(a.dateCurrent).getTime()
+    );
+    return OrdersFilters.map(renderOrder);
   };
 
   return (
@@ -136,6 +140,10 @@ const ListOrder = () => {
             onChange={(e) => setSelect(e.target.value)}
           >
             {" "}
+            <option value="Cliente">Cliente</option>
+            <option value="Empleado">Empleado</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Empleado">Empleado</option>
             <option value="Cliente">Cliente</option>
             <option value="Empleado">Empleado</option>
           </Select>

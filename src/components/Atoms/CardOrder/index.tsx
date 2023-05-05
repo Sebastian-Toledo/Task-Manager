@@ -3,7 +3,6 @@ import Order from "../../../Type/Order";
 import cardOrderStyles from "./styles";
 import Routes from "../../../Router/Routes";
 import { Link } from "react-router-dom";
-import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -43,58 +42,103 @@ const CardOrder = (props: Props) => {
   useEffect(() => {
     const currentDate = new Date();
     const a = Math.round((d.getTime() - currentDate.getTime()) / 86400000);
-
-    // switch(){
-
-    // }
-
-    if (a >= 3 && a <= 5 && props.order.stateOrder !== "Delivered") {
-      setbgIndex(2);
-      setTextIndex(5);
-      setStateIndex(5);
-    } else if (a <= 2 && a >= 1) {
-      setbgIndex(4);
-      setTextIndex(5);
-      setStateIndex(5);
-    } else if (a > 9999 || a > -9999) {
-      switch (props.order.stateOrder) {
-        case "In Process" || "En Proceso":
-          setbgIndex(5);
-          setTextIndex(3);
-          setStateIndex(2);
-          break;
-        case "Finished" || "Entregados":
-          setbgIndex(5);
-          setTextIndex(3);
-          setStateIndex(0);
-          break;
-        case "Delivered" || "Terminados":
-          setbgIndex(1);
+    console.log(
+      props.order.author,
+      " ",
+      props.order.stateOrder,
+      " ",
+      a,
+      " ",
+      props.order.estimatedTime
+    );
+    if (
+      props.order.stateOrder === "In Process" ||
+      props.order.stateOrder === "En Proceso"
+    ) {
+      if (props.order.estimatedTime === 1) {
+        if (0 <= a || a <= 1) {
+          setbgIndex(4);
           setTextIndex(5);
           setStateIndex(5);
-          break;
-        case "Canceled" || "Anulados":
+        } else if (a <= 3 || a > 1) {
+          setbgIndex(2);
+          setTextIndex(5);
+          setStateIndex(5);
+        }
+      } else if (props.order.estimatedTime === 2) {
+        if (a === 0 || a <= 4) {
+          setbgIndex(4);
+          setTextIndex(5);
+          setStateIndex(5);
+        } else if (a <= 7 || a > 4) {
+          setbgIndex(2);
+          setTextIndex(5);
+          setStateIndex(5);
+        }
+      } else if (props.order.estimatedTime === 3) {
+        if (a === 0 || a <= 7) {
+          setbgIndex(4);
+          setTextIndex(5);
+          setStateIndex(5);
+        } else if (a <= 10 || a > 7) {
+          setbgIndex(2);
+          setTextIndex(5);
+          setStateIndex(5);
+        }
+      } else if (props.order.estimatedTime === 4) {
+        if (a === 0 || a <= 13) {
+          setbgIndex(4);
+          setTextIndex(5);
+          setStateIndex(5);
+        } else if (a <= 20 || a > 13) {
+          setbgIndex(2);
+          setTextIndex(5);
+          setStateIndex(5);
+        }
+      } else if (props.order.estimatedTime === 5) {
+        if (a >= 0 || a <= 22) {
+          setbgIndex(4);
+          setTextIndex(5);
+          setStateIndex(5);
+        } else if (a <= 30 || a > 22) {
+          setbgIndex(2);
+          setTextIndex(5);
+          setStateIndex(5);
+        }
+      } else {
+        setbgIndex(5);
+        setTextIndex(3);
+        setStateIndex(2);
+      }
+    }
+    if (a > 30 || a < 0) {
+      switch (props.order.stateOrder) {
+        case "Anulados":
+        case "Canceled":
           setbgIndex(5);
           setTextIndex(3);
           setStateIndex(4);
           break;
+        case "Finished":
+        case "Terminados":
+          setbgIndex(5);
+          setTextIndex(3);
+          setStateIndex(0);
+          break;
+        case "Delivered":
+        case "Entregados":
+          setbgIndex(1);
+          setTextIndex(5);
+          setStateIndex(5);
+          break;
+        default:
+          setbgIndex(5);
+          setTextIndex(3);
+          setStateIndex(2);
+          break;
       }
     }
-    console.log("Resta ", a, props.order.stateOrder);
   }, []);
-
-  // const colorState = () => {
-  //   switch (props.order.stateOrder) {
-  //     case "In Process":
-  //       return setStateIndex(2);
-  //     case "Finished":
-  //       return setStateIndex(0);
-  //     case "Canceled":
-  //       return setStateIndex(4);
-  //     default:
-  //       return setStateIndex(0);
-  //   }
-  // };
 
   useEffect(() => {
     const colorBGIndex =

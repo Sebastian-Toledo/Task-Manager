@@ -1,4 +1,5 @@
 interface Order {
+  created_at: string | number | Date;
   _id: string;
   title: string;
   author: string;
@@ -9,14 +10,15 @@ interface Order {
   employee: "Ilay" | "Vero" | "Gabi" | "Dario" | "Flor" | "Fran";
   budget: number;
   stateOrder:
-    | "In Process"
     | "Finished"
     | "Delivered"
     | "Canceled"
     | "En Proceso"
     | "Terminados"
     | "Entregados"
-    | "Anulados";
+    | "Anulados"
+    | "In Process";
+
   comment?: string;
   dateChange?: Date;
   cashAdvance: number;
