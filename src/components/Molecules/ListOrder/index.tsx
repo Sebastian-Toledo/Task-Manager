@@ -28,8 +28,7 @@ const {
 const ListOrder = () => {
   const [getOrders, setOrders] = useState<Order[]>([]);
   const [getAuthor, setAuthor] = useState("");
-  const [getEmployee, setEmployee] = useState("");
-  const [getSelect, setSelect] = useState("Cliente");
+  const [getSelect, setSelect] = useState("");
   const [placement, setPlacement] = useState("En Proceso");
 
   useEffect(() => {
@@ -41,18 +40,14 @@ const ListOrder = () => {
   }, []);
 
   const onChange = (event: any) => {
-    if (getSelect === "Empleado") {
-      setEmployee(event.currentTarget.value);
-    }
-    if (getSelect === "Cliente") {
-      setAuthor(event.currentTarget.value);
-    }
+    setAuthor(event.currentTarget.value);
   };
 
   const changeInput = (order: Order) => {
-    return getSelect === "Cliente"
+    return getSelect === ""
       ? order.author.toLowerCase().includes(getAuthor.toLowerCase())
-      : order.employee.toLowerCase().includes(getEmployee.toLowerCase());
+      : order.employee.toLowerCase().includes(getSelect.toLowerCase()) &&
+          order.author.toLowerCase().includes(getAuthor.toLowerCase());
   };
 
   const renderOrder = (order: Order, index: number) => {
@@ -90,7 +85,7 @@ const ListOrder = () => {
     if (
       order.stateOrder === placement &&
       getAuthor === "" &&
-      getEmployee === ""
+      getSelect === ""
     ) {
       return stateFilter(order);
     } else {
@@ -137,15 +132,16 @@ const ListOrder = () => {
           <Select
             w="15%"
             value={getSelect}
+            placeholder="Empleados"
             onChange={(e) => setSelect(e.target.value)}
           >
             {" "}
-            <option value="Cliente">Cliente</option>
-            <option value="Empleado">Empleado</option>
-            <option value="Cliente">Cliente</option>
-            <option value="Empleado">Empleado</option>
-            <option value="Cliente">Cliente</option>
-            <option value="Empleado">Empleado</option>
+            <option value="Ilay">Ilay</option>
+            <option value="Vero">Vero</option>
+            <option value="Gabi">Gabi</option>
+            <option value="Dario">Dario</option>
+            <option value="Flor">Flor</option>
+            <option value="Fran">Fran</option>
           </Select>
           <Input
             w="84%"
