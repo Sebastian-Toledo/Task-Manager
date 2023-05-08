@@ -7,6 +7,7 @@ import {
   FormControl,
   FormLabel,
   Select,
+  Input,
 } from "@chakra-ui/react";
 import ButtonCancel from "../../Atoms/ButtonCancel";
 import ButtonSave from "../../Atoms/ButtonSave";
@@ -24,6 +25,7 @@ import { useFormik } from "formik";
 import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
 import axios from "axios";
 import { HOST, IP } from "../../../utils/envirementConfiguration";
+import formStyles from "../FormOrder/styles";
 
 interface Props {
   order: Order;
@@ -175,12 +177,19 @@ const BigOrder = (props: Props) => {
                 value={cashAdvance}
                 disabled={true}
               />
-              <InputNumber
-                name="Número de presupuesto"
-                placeholder="Número un número..."
-                value={budget}
-                disabled={true}
-              />
+              <FormControl>
+                <FormLabel htmlFor="budget">Número de presupuesto</FormLabel>
+                <Input
+                  placeholder="Número un presupuesto..."
+                  id="budget"
+                  name="budget"
+                  type="number"
+                  sx={formStyles.input}
+                  onChange={formik.handleChange}
+                  value={formik.values.budget}
+                  required
+                />
+              </FormControl>
             </Flex>
           </Flex>
         </Flex>
