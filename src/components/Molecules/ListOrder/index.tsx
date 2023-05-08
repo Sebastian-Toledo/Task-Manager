@@ -101,8 +101,7 @@ const ListOrder = () => {
       return CompletedTasks(placement);
     }
     OrdersFilters.sort(
-      (a, b) =>
-        new Date(b.dateCurrent).getTime() - new Date(a.dateCurrent).getTime()
+      (a, b) => new Date(a.deadLine).getTime() - new Date(b.deadLine).getTime()
     );
     return OrdersFilters.map(renderOrder);
   };

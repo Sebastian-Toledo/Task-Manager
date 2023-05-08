@@ -76,7 +76,7 @@ const CardOrder = (props: Props) => {
           setStateIndex(5);
         }
       } else if (props.order.estimatedTime === 3) {
-        if (a === 0 || a <= 7) {
+        if (0 <= a || a <= 7) {
           setbgIndex(4);
           setTextIndex(5);
           setStateIndex(5);
@@ -86,7 +86,7 @@ const CardOrder = (props: Props) => {
           setStateIndex(5);
         }
       } else if (props.order.estimatedTime === 4) {
-        if (a === 0 || a <= 13) {
+        if (0 <= a || a <= 13) {
           setbgIndex(4);
           setTextIndex(5);
           setStateIndex(5);
@@ -96,7 +96,7 @@ const CardOrder = (props: Props) => {
           setStateIndex(5);
         }
       } else if (props.order.estimatedTime === 5) {
-        if (a >= 0 || a <= 22) {
+        if (0 <= a || a <= 22) {
           setbgIndex(4);
           setTextIndex(5);
           setStateIndex(5);
