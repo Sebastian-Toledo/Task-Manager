@@ -8,7 +8,9 @@ import {
   FormLabel,
   Select,
   Input,
+  useToast,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import ButtonCancel from "../../Atoms/ButtonCancel";
 import ButtonSave from "../../Atoms/ButtonSave";
 import InputNumber from "../../Atoms/InputNumber";
@@ -30,8 +32,11 @@ import formStyles from "../FormOrder/styles";
 interface Props {
   order: Order;
 }
+type ToastState = "info" | "warning" | "success" | "error" | "loading";
 
 const BigOrder = (props: Props) => {
+  const toast = useToast();
+  const [getState, setState] = useState("");
   const {
     _id,
     title,
@@ -46,7 +51,50 @@ const BigOrder = (props: Props) => {
     cashAdvance,
     phone,
   } = props.order;
-  console.log(props.order);
+  const customToast = (state: ToastState, description: String) => {
+    toast({
+      title: state.toUpperCase(),
+      description: description,
+      status: state,
+      duration: 9000,
+      isClosable: true,
+    });
+  };
+  const submiteOk = (values: Object) => {
+    axios({
+      method: "PUT",
+      url: `http://${HOST}/task/${_id}`,
+      data: values,
+    })
+      .then(function (res) {
+        window.location.href = `http://${IP}:3000`;
+      })
+      .catch(function (res) {
+        alert("Hubo un problema");
+        console.log(`http://${HOST}/task/${_id}`);
+      })
+      .finally(() => (window.location.href = `http://${IP}:3000`));
+  };
+  const handleSelectChange = (values: Object) => {
+    if (getState === "Entregados" || getState === "Anulados") {
+      console.log(formik.values.stateOrder);
+      const userInput = prompt("Por favor, ingrese la contraseña");
+      if (userInput === "2024") {
+        submiteOk(values);
+        customToast("success", "Modificaciones Realizadas");
+      } else {
+        customToast("error", "Contraseña Incorrecta");
+      }
+    } else if (getState === "En Proceso" || getState === "Terminados") {
+      const userInput = prompt("Por favor, ingrese la contraseña");
+      if (userInput === "2023") {
+        submiteOk(values);
+        customToast("success", "Modificaciones Realizadas");
+      } else {
+        customToast("error", "Contraseña Incorrecta");
+      }
+    }
+  };
   const formik = useFormik({
     initialValues: {
       title: title,
@@ -62,21 +110,11 @@ const BigOrder = (props: Props) => {
       phone: phone,
     },
     onSubmit: (values) => {
-      axios({
-        method: "PUT",
-        url: `http://${HOST}/task/${_id}`,
-        data: values,
-      })
-        .then(function (res) {
-          window.location.href = `http://${IP}:3000`;
-        })
-        .catch(function (res) {
-          alert("Hubo un problema");
-          console.log(`http://${HOST}/task/${_id}`);
-        })
-        .finally(() => (window.location.href = `http://${IP}:3000`));
+      setState(values.stateOrder);
+      handleSelectChange(values);
     },
   });
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <Flex flexDirection="column" gap="5">
@@ -125,6 +163,7 @@ const BigOrder = (props: Props) => {
                   <option value="Terminados"> Terminados</option>
                   <option value="Entregados"> Entregados</option>
                   <option value="Anulados"> Anulados</option>
+
                   {}
                 </Select>
               </FormControl>
