@@ -51,6 +51,15 @@ const BigOrder = (props: Props) => {
     cashAdvance,
     phone,
   } = props.order;
+  const confirmPassword = (values: Object, password: String) => {
+    const userInput = prompt("Por favor, ingrese la contraseña");
+    if (userInput === password) {
+      submiteOk(values);
+      customToast("success", "Modificaciones Realizadas");
+    } else {
+      customToast("error", "Contraseña Incorrecta");
+    }
+  };
   const customToast = (state: ToastState, description: String) => {
     toast({
       title: state.toUpperCase(),
@@ -76,15 +85,19 @@ const BigOrder = (props: Props) => {
       .finally(() => (window.location.href = `http://${IP}:3000`));
   };
   const handleSelectChange = (values: Object) => {
+    setState(formik.values.stateOrder);
+    switch (getState) {
+      case "Entregados":
+        confirmPassword(values, "5692");
+        break;
+      case "Anulados":
+        confirmPassword(values, "8462");
+        break;
+      case "En Proceso" || "Terminados":
+        confirmPassword(values, "2023");
+    }
+
     if (getState === "Entregados" || getState === "Anulados") {
-      console.log(formik.values.stateOrder);
-      const userInput = prompt("Por favor, ingrese la contraseña");
-      if (userInput === "2024") {
-        submiteOk(values);
-        customToast("success", "Modificaciones Realizadas");
-      } else {
-        customToast("error", "Contraseña Incorrecta");
-      }
     } else if (getState === "En Proceso" || getState === "Terminados") {
       const userInput = prompt("Por favor, ingrese la contraseña");
       if (userInput === "2023") {
@@ -110,7 +123,6 @@ const BigOrder = (props: Props) => {
       phone: phone,
     },
     onSubmit: (values) => {
-      setState(values.stateOrder);
       handleSelectChange(values);
     },
   });
