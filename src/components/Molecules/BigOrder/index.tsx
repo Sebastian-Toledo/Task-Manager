@@ -96,17 +96,6 @@ const BigOrder = (props: Props) => {
       case "En Proceso" || "Terminados":
         confirmPassword(values, "2023");
     }
-
-    if (getState === "Entregados" || getState === "Anulados") {
-    } else if (getState === "En Proceso" || getState === "Terminados") {
-      const userInput = prompt("Por favor, ingrese la contraseña");
-      if (userInput === "2023") {
-        submiteOk(values);
-        customToast("success", "Modificaciones Realizadas");
-      } else {
-        customToast("error", "Contraseña Incorrecta");
-      }
-    }
   };
   const formik = useFormik({
     initialValues: {
