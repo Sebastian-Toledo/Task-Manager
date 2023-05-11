@@ -93,8 +93,12 @@ const BigOrder = (props: Props) => {
       case "Anulados":
         confirmPassword(values, "8462");
         break;
-      case "En Proceso" || "Terminados":
+      case "En Proceso":
         confirmPassword(values, "2023");
+        break;
+      case "Terminados":
+        confirmPassword(values, "2023");
+        break;
     }
   };
   const formik = useFormik({
