@@ -21,7 +21,7 @@ interface Order {
     | "Anulados"
     | "In Process";
   cashAdvance: number;
-  phone: number;
+  phone: string;
   modify?: Modify[];
 }
 
