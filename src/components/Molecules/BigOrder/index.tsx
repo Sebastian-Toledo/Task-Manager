@@ -9,7 +9,9 @@ import {
   Select,
   Input,
   useToast,
+  Button,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import ButtonCancel from "../../Atoms/ButtonCancel";
 import ButtonSave from "../../Atoms/ButtonSave";
@@ -168,7 +170,6 @@ const BigOrder = (props: Props) => {
                   <option value="Terminados"> Terminados</option>
                   <option value="Entregados"> Entregados</option>
                   <option value="Anulados"> Anulados</option>
-
                   {}
                 </Select>
               </FormControl>
@@ -188,10 +189,10 @@ const BigOrder = (props: Props) => {
                 value={author}
                 disabled={true}
               />
-              <InputPhone
+              <InputText
                 name="Número de teléfono"
                 placeholder="Número de teléfono..."
-                value={phone}
+                value={phone.toString()}
                 disabled={true}
               />
             </Flex>
@@ -239,17 +240,17 @@ const BigOrder = (props: Props) => {
         </Flex>
         <Flex alignItems="center" justifyContent="space-between">
           <Flex>
-            <NavItem
-              key="MODIFY"
-              to={Routes.MODIFY}
-              w="175px"
-              borderRadius="1px"
-              bg="#ff375b"
-              color="white"
-              h="48px"
-            >
-              Extender plazo
-            </NavItem>
+            <Link key="MODIFY" to={`${Routes.MODIFY}/${_id}`}>
+              <Button
+                w="175px"
+                borderRadius="1px"
+                bg="#ff375b"
+                color="white"
+                size="lg"
+              >
+                Extender plazo
+              </Button>
+            </Link>
           </Flex>
           <Flex gap="5">
             <ButtonCancel />

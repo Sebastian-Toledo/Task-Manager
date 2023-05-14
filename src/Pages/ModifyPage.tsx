@@ -16,6 +16,7 @@ const ModifyPage = () => {
       .then((order) => setOrderModify(order));
   }, []);
 
+  console.log(orderModify);
   if (!orderModify) {
     return <OrderPlaceholder />;
   }

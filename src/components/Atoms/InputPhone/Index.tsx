@@ -5,7 +5,7 @@ interface Props {
   name: string;
   disabled?: boolean;
   placeholder?: string;
-  value?: number;
+  value?: string;
 }
 
 const InputPhone = (props: Props) => {
@@ -24,7 +24,7 @@ const InputPhone = (props: Props) => {
         border="1px"
         borderColor="gray"
         borderRadius="1px"
-        type="tel"
+        type="text"
         placeholder={props.placeholder}
         onChange={() => handlePhone}
         value={getPhone}

@@ -35,7 +35,7 @@ const FormOrder = () => {
       budget: 0,
       stateOrder: "En Proceso",
       cashAdvance: 0,
-      phone: 0,
+      phone: "",
     },
     validationSchema: Yup.object({
       title: Yup.string().required("Campo requerido"),
@@ -213,7 +213,7 @@ const FormOrder = () => {
                     id="deadLine"
                     name="deadLine"
                     type="datetime-local"
-                    min={formik.values.deadLine}
+                    min={formik.values.dateCurrent}
                     sx={formStyles.inputDescription}
                     onChange={formik.handleChange}
                     value={formik.values.deadLine}

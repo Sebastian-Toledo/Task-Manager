@@ -55,81 +55,61 @@ const CardOrder = (props: Props) => {
       props.order.stateOrder === "In Process" ||
       props.order.stateOrder === "En Proceso"
     ) {
-      if (props.order.estimatedTime === 1) {
-        if (0 <= a || a <= 1) {
-          setbgIndex(4);
-          setTextIndex(5);
-          setStateIndex(5);
-        } else if (a <= 3 || a > 1) {
-          setbgIndex(2);
-          setTextIndex(5);
-          setStateIndex(5);
-        }
-      } else if (props.order.estimatedTime === 2) {
-        if (a === 0 || a <= 4) {
-          setbgIndex(4);
-          setTextIndex(5);
-          setStateIndex(5);
-        } else if (a <= 7 || a > 4) {
-          setbgIndex(2);
-          setTextIndex(5);
-          setStateIndex(5);
-        }
-      } else if (props.order.estimatedTime === 3) {
-        if (0 <= a || a <= 7) {
-          setbgIndex(4);
-          setTextIndex(5);
-          setStateIndex(5);
-        } else if (a <= 10 || a > 7) {
-          setbgIndex(2);
-          setTextIndex(5);
-          setStateIndex(5);
-        }
-      } else if (props.order.estimatedTime === 4) {
-        if (0 <= a || a <= 13) {
-          setbgIndex(4);
-          setTextIndex(5);
-          setStateIndex(5);
-        } else if (a <= 20 || a > 13) {
-          setbgIndex(2);
-          setTextIndex(5);
-          setStateIndex(5);
-        }
-      } else if (props.order.estimatedTime === 5) {
-        if (0 <= a || a <= 22) {
-          setbgIndex(4);
-          setTextIndex(5);
-          setStateIndex(5);
-        } else if (a <= 30 || a > 22) {
-          setbgIndex(2);
-          setTextIndex(5);
-          setStateIndex(5);
-        }
-      } else {
-        setbgIndex(5);
-        setTextIndex(3);
-        setStateIndex(2);
-      }
-    }
-    if (a > 30 || a < 0) {
-      switch (props.order.stateOrder) {
-        case "Anulados":
-        case "Canceled":
-          setbgIndex(5);
-          setTextIndex(3);
-          setStateIndex(4);
+      switch (props.order.estimatedTime) {
+        case 1:
+          if (0 <= a || a <= 1) {
+            setbgIndex(4);
+            setTextIndex(5);
+            setStateIndex(5);
+          } else if (a <= 3 || a > 1) {
+            setbgIndex(2);
+            setTextIndex(5);
+            setStateIndex(5);
+          }
           break;
-        case "Finished":
-        case "Terminados":
-          setbgIndex(5);
-          setTextIndex(3);
-          setStateIndex(0);
+        case 2:
+          if (a === 0 || a <= 4) {
+            setbgIndex(4);
+            setTextIndex(5);
+            setStateIndex(5);
+          } else if (a <= 7 || a > 4) {
+            setbgIndex(2);
+            setTextIndex(5);
+            setStateIndex(5);
+          }
           break;
-        case "Delivered":
-        case "Entregados":
-          setbgIndex(1);
-          setTextIndex(5);
-          setStateIndex(5);
+        case 3:
+          if (0 <= a || a <= 7) {
+            setbgIndex(4);
+            setTextIndex(5);
+            setStateIndex(5);
+          } else if (a <= 10 || a > 7) {
+            setbgIndex(2);
+            setTextIndex(5);
+            setStateIndex(5);
+          }
+          break;
+        case 4:
+          if (0 <= a || a <= 13) {
+            setbgIndex(4);
+            setTextIndex(5);
+            setStateIndex(5);
+          } else if (a <= 20 || a > 13) {
+            setbgIndex(2);
+            setTextIndex(5);
+            setStateIndex(5);
+          }
+          break;
+        case 5:
+          if (0 <= a || a <= 22) {
+            setbgIndex(4);
+            setTextIndex(5);
+            setStateIndex(5);
+          } else if (a <= 30 || a > 22) {
+            setbgIndex(2);
+            setTextIndex(5);
+            setStateIndex(5);
+          }
           break;
         default:
           setbgIndex(5);
@@ -137,6 +117,34 @@ const CardOrder = (props: Props) => {
           setStateIndex(2);
           break;
       }
+    }
+
+    switch (props.order.stateOrder) {
+      case "Anulados":
+      case "Canceled":
+        setbgIndex(5);
+        setTextIndex(3);
+        setStateIndex(4);
+        break;
+      case "Finished":
+      case "Terminados":
+        setbgIndex(5);
+        setTextIndex(3);
+        setStateIndex(0);
+        break;
+      case "Delivered":
+      case "Entregados":
+        setbgIndex(1);
+        setTextIndex(5);
+        setStateIndex(5);
+        break;
+      default:
+        if (a > 30 || a < 0) {
+          setbgIndex(5);
+          setTextIndex(3);
+          setStateIndex(2);
+        }
+        break;
     }
   }, []);
 

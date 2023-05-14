@@ -166,7 +166,7 @@ const BigOrderModify = (props: Props) => {
                     placeholder="Número de teléfono..."
                     id="phone"
                     name="phone"
-                    type="tel"
+                    type="text"
                     sx={formStyles.input}
                     onChange={formik.handleChange}
                     value={formik.values.phone}

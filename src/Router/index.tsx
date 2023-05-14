@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     element: <CreatePage />,
   },
   {
-    path: Routes.MODIFY,
+    path: `${Routes.MODIFY}/:orderId`,
     element: <ModifyPage />,
   },
 ]);

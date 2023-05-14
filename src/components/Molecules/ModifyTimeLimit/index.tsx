@@ -14,7 +14,7 @@ interface Props {
 }
 
 const ModifyTimeLimit = (props: Props) => {
-  const { title, deadLine, employee, comment, dateChange } = props.order;
+  const { title, deadLine, employee } = props.order;
 
   return (
     <Flex
@@ -67,16 +67,12 @@ const ModifyTimeLimit = (props: Props) => {
         >
           <Flex>
             <InputText
-              name="Empleado que extiende"
+              name="Empleado que Extiende el plazo"
               placeholder="Nombre del empleado..."
             />
           </Flex>
           <Flex gap="5">
-            <InputDate
-              text="Fecha de entrega"
-              disabled={true}
-              value={deadLine}
-            />
+            <InputDate text="Fecha de entrega" value={deadLine} />
             <InputDate text="Nueva fecha de entrega" />
           </Flex>
           <Flex>

@@ -1,3 +1,5 @@
+import Modify from "./Modify";
+
 interface Order {
   created_at: string | number | Date;
   _id: string;
@@ -18,11 +20,9 @@ interface Order {
     | "Entregados"
     | "Anulados"
     | "In Process";
-
-  comment?: string;
-  dateChange?: Date;
   cashAdvance: number;
   phone: number;
+  modify?: Modify[];
 }
 
 export default Order;
