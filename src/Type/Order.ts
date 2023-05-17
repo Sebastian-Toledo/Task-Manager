@@ -22,7 +22,7 @@ interface Order {
     | "In Process";
   cashAdvance: number;
   phone: string;
-  modify?: Modify[];
+  modify: Modify[];
 }
 
 export default Order;

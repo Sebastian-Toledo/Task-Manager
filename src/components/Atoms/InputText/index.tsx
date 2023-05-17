@@ -13,6 +13,8 @@ const InputText = (props: Props) => {
     <FormControl>
       <FormLabel htmlFor="text">{props.name}</FormLabel>
       <Input
+        bgColor="black"
+        color="white"
         disabled={props.disabled}
         placeholder={props.placeholder}
         type="text"

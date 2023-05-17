@@ -21,6 +21,8 @@ const InputDescription = (props: Props) => {
       <Textarea
         disabled={props.disabled}
         border="1px"
+        bgColor="black"
+        color="white"
         borderColor="gray"
         borderRadius="1px"
         placeholder={props.placeholder}

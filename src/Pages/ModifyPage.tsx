@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Order from "../Type/Order";
-import ModifyTimeLimit from "../Components/Molecules/ModifyTimeLimit/index";
+import ModifyTimeLimit from "../Components/Molecules/ModifyLimitTime/index";
 import OrderPlaceholder from "../Components/Atoms/OrderPlaceholder";
 import { HOST } from "../utils/envirementConfiguration";
 

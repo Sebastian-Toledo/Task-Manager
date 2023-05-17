@@ -12,13 +12,7 @@ import {
 } from "@chakra-ui/react";
 import ButtonCancel from "../../Atoms/ButtonCancel";
 import ButtonSave from "../../Atoms/ButtonSave";
-import InputNumber from "../../Atoms/InputNumber";
-import InputPhone from "../../Atoms/InputPhone/Index";
-import InputText from "../../Atoms/InputText";
 import SubTitle from "../../Atoms/SubTitle";
-import InputDescription from "../../Atoms/InputDescription";
-import SelectEstimated from "../../Atoms/SelectEstimated";
-import InputDate from "../../Atoms/InputDate/Index";
 import NavItem from "../../Atoms/NavItem";
 import Routes from "../../../Router/Routes";
 import { useFormik } from "formik";
@@ -70,7 +64,10 @@ const BigOrderModify = (props: Props) => {
         .then(function (res) {
           alert("Successfully signed up!");
         })
-        .catch(function (res) {});
+        .catch(function (res) {
+          console.log(res);
+          alert("Hubo un problema con la subida de datos");
+        });
 
       alert(JSON.stringify(values, null, 2));
     },

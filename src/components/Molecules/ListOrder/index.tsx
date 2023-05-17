@@ -51,7 +51,6 @@ const ListOrder = () => {
   };
 
   const renderOrder = (order: Order, index: number) => {
-    console.log(`${JSON.stringify(order)}/${index}`);
     return (
       <CardOrder order={order} key={`${JSON.stringify(order)}/${index}`} />
     );

@@ -36,6 +36,7 @@ const FormOrder = () => {
       stateOrder: "En Proceso",
       cashAdvance: 0,
       phone: "",
+      modify: [],
     },
     validationSchema: Yup.object({
       title: Yup.string().required("Campo requerido"),
@@ -55,9 +56,7 @@ const FormOrder = () => {
         url: `http://${HOST}/task/create`,
         data: values,
       })
-        .then(function (res) {
-          console.log(res);
-        })
+        .then(function (res) {})
         .catch(function (res) {
           console.log(res);
           alert("Hubo un problema con la subida de datos");
