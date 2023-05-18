@@ -46,7 +46,7 @@ const ModifyLimitTime = (props: Props) => {
     modify,
   } = props.order;
 
-  const ojo = {
+  const objectModify = {
     previewDate: formatDateAsDatetimeString(deadLine),
     comment: comment ? comment : " ",
     employeeCharge: employeeCharge ? employeeCharge : "Flor",
@@ -63,7 +63,7 @@ const ModifyLimitTime = (props: Props) => {
       data: values,
     })
       .then(function (res) {
-        // window.location.href = `http://${IP}:3000`;
+        window.location.href = `http://${IP}:3000`;
       })
       .catch(function (res) {
         alert("Hubo un problema");
@@ -90,11 +90,7 @@ const ModifyLimitTime = (props: Props) => {
       modify: modify,
     },
     onSubmit: (values) => {
-      console.log("###############");
-      console.log(values.modify);
-      console.log("###############");
-      console.log(ojo);
-      values.modify?.push(ojo);
+      values.modify?.push(objectModify);
       values.deadLine = values.changeDeadLine;
       submiteOk(values);
     },

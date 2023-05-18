@@ -55,7 +55,9 @@ const FormOrder = () => {
         url: `http://${HOST}/task/create`,
         data: values,
       })
-        .then(function (res) {})
+        .then(function (res) {
+          window.location.href = `http://${IP}:3000`;
+        })
         .catch(function (res) {
           console.log(res);
           alert("Hubo un problema con la subida de datos");
@@ -164,7 +166,7 @@ const FormOrder = () => {
                     placeholder="Número de teléfono..."
                     id="phone"
                     name="phone"
-                    type="tel"
+                    type="text"
                     sx={formStyles.input}
                     onChange={formik.handleChange}
                     value={formik.values.phone}

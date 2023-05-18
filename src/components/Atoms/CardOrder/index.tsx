@@ -18,13 +18,14 @@ const CardOrder = (props: Props) => {
     employee,
     budget,
     stateOrder,
+    estimatedTime,
     _id,
   } = props.order;
   const c = new Date(dateCurrent);
   const d = new Date(deadLine);
   const [getbgIndex, setbgIndex] = useState(5);
   const [getTextIndex, setTextIndex] = useState(3);
-  const [getStateIndex, setStateIndex] = useState(4);
+  const [getStateIndex, setStateIndex] = useState(2);
   const [getStateColor, setStateColor] = useState("");
   const [getCardColor, setCardColor] = useState("");
   const [getTextColor, setTextColor] = useState("");
@@ -42,70 +43,58 @@ const CardOrder = (props: Props) => {
   useEffect(() => {
     const currentDate = new Date();
     const a = Math.round((d.getTime() - currentDate.getTime()) / 86400000);
-    console.log(
-      props.order.author,
-      " ",
-      props.order.stateOrder,
-      " ",
-      a,
-      " ",
-      props.order.estimatedTime
-    );
-    if (
-      props.order.stateOrder === "In Process" ||
-      props.order.stateOrder === "En Proceso"
-    ) {
-      switch (props.order.estimatedTime) {
+    if (stateOrder === "In Process" || stateOrder === "En Proceso") {
+      switch (estimatedTime) {
         case 1:
-          if (0 <= a || a <= 1) {
+          if (0 <= a && a <= 1) {
             setbgIndex(4);
             setTextIndex(5);
             setStateIndex(5);
-          } else if (a <= 3 || a > 1) {
+          } else if (a <= 3 && a > 1) {
             setbgIndex(2);
             setTextIndex(5);
             setStateIndex(5);
           }
           break;
         case 2:
-          if (a === 0 || a <= 4) {
+          if (a === 0 && a <= 4) {
             setbgIndex(4);
             setTextIndex(5);
             setStateIndex(5);
-          } else if (a <= 7 || a > 4) {
+          } else if (a <= 7 && a > 4) {
             setbgIndex(2);
             setTextIndex(5);
             setStateIndex(5);
           }
           break;
         case 3:
-          if (0 <= a || a <= 7) {
+          if (0 <= a && a <= 7) {
             setbgIndex(4);
             setTextIndex(5);
             setStateIndex(5);
-          } else if (a <= 10 || a > 7) {
+          } else if (a <= 10 && a > 7) {
             setbgIndex(2);
             setTextIndex(5);
             setStateIndex(5);
           }
           break;
         case 4:
-          if (0 <= a || a <= 13) {
+          if (0 <= a && a <= 13) {
             setbgIndex(4);
             setTextIndex(5);
             setStateIndex(5);
-          } else if (a <= 20 || a > 13) {
+          } else if (a <= 20 && a > 13) {
             setbgIndex(2);
             setTextIndex(5);
             setStateIndex(5);
           }
           break;
         case 5:
-          if (0 <= a || a <= 22) {
+          if (0 <= a && a <= 22) {
             setbgIndex(4);
             setTextIndex(5);
             setStateIndex(5);
-          } else if (a <= 30 || a > 22) {
+          } else if (a <= 30 && a > 22) {
             setbgIndex(2);
             setTextIndex(5);
             setStateIndex(5);
@@ -119,7 +108,7 @@ const CardOrder = (props: Props) => {
       }
     }
 
-    switch (props.order.stateOrder) {
+    switch (stateOrder) {
       case "Anulados":
       case "Canceled":
         setbgIndex(5);
