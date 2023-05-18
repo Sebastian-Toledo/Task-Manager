@@ -16,7 +16,6 @@ import { useState } from "react";
 import ButtonCancel from "../../Atoms/ButtonCancel";
 import ButtonSave from "../../Atoms/ButtonSave";
 import InputNumber from "../../Atoms/InputNumber";
-import InputPhone from "../../Atoms/InputPhone/Index";
 import InputText from "../../Atoms/InputText";
 import SubTitle from "../../Atoms/SubTitle";
 import InputDescription from "../../Atoms/InputDescription";
@@ -52,6 +51,7 @@ const BigOrder = (props: Props) => {
     stateOrder,
     cashAdvance,
     phone,
+    modify,
   } = props.order;
   const confirmPassword = (values: Object, password: String) => {
     const userInput = prompt("Por favor, ingrese la contraseña");
@@ -86,6 +86,7 @@ const BigOrder = (props: Props) => {
       })
       .finally(() => (window.location.href = `http://${IP}:3000`));
   };
+
   const handleSelectChange = (values: Object) => {
     setState(formik.values.stateOrder);
     switch (getState) {
@@ -239,18 +240,33 @@ const BigOrder = (props: Props) => {
           </Flex>
         </Flex>
         <Flex alignItems="center" justifyContent="space-between">
-          <Flex>
-            <Link key="MODIFY" to={`${Routes.MODIFY}/${_id}`}>
-              <Button
-                w="175px"
-                borderRadius="1px"
-                bg="#ff375b"
-                color="white"
-                size="lg"
-              >
-                Extender plazo
-              </Button>
-            </Link>
+          <Flex gap="5">
+            <Flex>
+              <Link key="MODIFY" to={`${Routes.MODIFY}/${_id}`}>
+                <Button
+                  w="175px"
+                  borderRadius="1px"
+                  bg="#ff375b"
+                  color="white"
+                  size="lg"
+                >
+                  Extender plazo
+                </Button>
+              </Link>
+            </Flex>
+            <Flex>
+              <Link key="HISTORIAL" to={`${Routes.HISTORIAL}/${_id}`}>
+                <Button
+                  w="175px"
+                  borderRadius="1px"
+                  bg="#ff375b"
+                  color="white"
+                  size="lg"
+                >
+                  Historial
+                </Button>
+              </Link>
+            </Flex>
           </Flex>
           <Flex gap="5">
             <ButtonCancel />

@@ -22,7 +22,11 @@ interface Order {
     | "In Process";
   cashAdvance: number;
   phone: string;
-  modify: Modify[];
+  changeDeadLine?: Date;
+  previewDate?: Date;
+  comment?: string;
+  employeeCharge?: "Ilay" | "Vero" | "Gabi" | "Dario" | "Flor" | "Fran";
+  modify?: Modify[];
 }
 
 export default Order;

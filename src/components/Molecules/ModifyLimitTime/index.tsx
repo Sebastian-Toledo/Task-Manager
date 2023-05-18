@@ -21,8 +21,6 @@ import { useFormik } from "formik";
 import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
 import { HOST, IP } from "../../../utils/envirementConfiguration";
 import axios from "axios";
-import * as Yup from "yup";
-import { useEffect, useState } from "react";
 
 interface Props {
   order: Order;
@@ -42,7 +40,21 @@ const ModifyLimitTime = (props: Props) => {
     dateCurrent,
     estimatedTime,
     description,
+    comment,
+    employeeCharge,
+    changeDeadLine,
+    modify,
   } = props.order;
+
+  const ojo = {
+    previewDate: formatDateAsDatetimeString(deadLine),
+    comment: comment ? comment : " ",
+    employeeCharge: employeeCharge ? employeeCharge : "Flor",
+    dateChange:
+      changeDeadLine === undefined
+        ? " "
+        : formatDateAsDatetimeString(changeDeadLine),
+  };
 
   const submiteOk = (values: Object) => {
     axios({
@@ -51,13 +63,12 @@ const ModifyLimitTime = (props: Props) => {
       data: values,
     })
       .then(function (res) {
-        window.location.href = `http://${IP}:3000`;
+        // window.location.href = `http://${IP}:3000`;
       })
       .catch(function (res) {
         alert("Hubo un problema");
         console.log(`http://${HOST}/task/${_id}`);
-      })
-      .finally(() => (window.location.href = `http://${IP}:3000`));
+      });
   };
 
   const formik = useFormik({
@@ -73,22 +84,21 @@ const ModifyLimitTime = (props: Props) => {
       stateOrder: stateOrder,
       cashAdvance: cashAdvance,
       phone: phone,
-      modify: {
-        previewDate: formatDateAsDatetimeString(deadLine),
-        comment: " ",
-        employeeCharge: " ",
-        dateChange: formatDateAsDatetimeString(new Date()),
-      },
+      changeDeadLine: formatDateAsDatetimeString(new Date()),
+      comment: " ",
+      employeeCharge: " ",
+      modify: modify,
     },
     onSubmit: (values) => {
-      console.log("hola");
-      console.log(values);
-      values.deadLine = values.modify.dateChange;
-      console.log(values.deadLine);
+      console.log("###############");
+      console.log(values.modify);
+      console.log("###############");
+      console.log(ojo);
+      values.modify?.push(ojo);
+      values.deadLine = values.changeDeadLine;
       submiteOk(values);
     },
   });
-
   return (
     <form onSubmit={formik.handleSubmit}>
       <Flex
@@ -144,14 +154,14 @@ const ModifyLimitTime = (props: Props) => {
                 <FormLabel>Empleado que Extiende el plazo</FormLabel>
                 <Select
                   maxW="49%"
-                  id="modify.employeeCharge"
-                  name="modify.employeeCharge"
+                  id="employeeCharge"
+                  name="employeeCharge"
                   placeholder="Nombre del empleado..."
                   border="1px"
                   borderColor="gray"
                   borderRadius="1px"
                   onChange={formik.handleChange}
-                  value={formik.values.modify.employeeCharge}
+                  value={formik.values.employeeCharge}
                   required
                 >
                   <option value="Ilay"> Ilay</option>
@@ -174,12 +184,12 @@ const ModifyLimitTime = (props: Props) => {
                 <FormLabel>Nueva fecha de entrega</FormLabel>
                 <Input
                   min={formatDateAsDatetimeString(new Date())}
-                  id="modify.dateChange"
-                  name="modify.dateChange"
+                  id="changeDeadLine"
+                  name="changeDeadLine"
                   type="datetime-local"
                   border="1px"
                   onChange={formik.handleChange}
-                  value={formik.values.modify.dateChange}
+                  value={formik.values.changeDeadLine}
                   borderColor="gray"
                   borderRadius="1px"
                 />
@@ -189,14 +199,14 @@ const ModifyLimitTime = (props: Props) => {
               <FormControl>
                 <FormLabel>Razón por la cual se extiende el plazo</FormLabel>
                 <Textarea
-                  id="modify.comment"
-                  name="modify.comment"
+                  id="comment"
+                  name="comment"
                   border="1px"
                   borderColor="gray"
                   borderRadius="1px"
                   placeholder="Escribir un mensaje..."
                   onChange={formik.handleChange}
-                  value={formik.values.modify.comment}
+                  value={formik.values.comment}
                 />
               </FormControl>
             </Flex>

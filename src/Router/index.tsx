@@ -4,6 +4,7 @@ import HomePage from "../Pages/HomePage";
 import OrderPage from "../Pages/OrderPage";
 import CreatePage from "../Pages/CreatePage";
 import ModifyPage from "../Pages/ModifyPage";
+import HistorialPage from "../Pages/HistorialPage";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: `${Routes.MODIFY}/:orderId`,
     element: <ModifyPage />,
+  },
+  {
+    path: `${Routes.HISTORIAL}/:orderId`,
+    element: <HistorialPage />,
   },
 ]);
 

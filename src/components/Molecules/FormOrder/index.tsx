@@ -36,7 +36,6 @@ const FormOrder = () => {
       stateOrder: "En Proceso",
       cashAdvance: 0,
       phone: "",
-      modify: [],
     },
     validationSchema: Yup.object({
       title: Yup.string().required("Campo requerido"),
@@ -182,8 +181,8 @@ const FormOrder = () => {
                     name="currentDate"
                     type="datetime-local"
                     max={formik.values.dateCurrent}
+                    defaultValue={formik.values.dateCurrent}
                     sx={formStyles.inputDescription}
-                    value={formik.values.dateCurrent}
                     required
                   />
                 </FormControl>
