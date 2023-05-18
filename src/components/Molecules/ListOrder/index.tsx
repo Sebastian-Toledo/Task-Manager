@@ -37,6 +37,14 @@ const ListOrder = () => {
       .then((orderss: Order[]) => {
         setOrders(orderss);
       });
+    const interval = setInterval(() => {
+      fetch(`http://${HOST}/task`)
+        .then((response) => response.json())
+        .then((orderss: Order[]) => {
+          setOrders(orderss);
+        });
+    }, 600000);
+    return () => clearInterval(interval);
   }, []);
 
   const onChange = (event: any) => {
