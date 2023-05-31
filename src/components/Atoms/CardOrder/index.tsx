@@ -37,7 +37,7 @@ const CardOrder = (props: Props) => {
     "black",
     "#FF375B",
     "white",
-    "grey",
+    "#d9dddc",
   ];
 
   useEffect(() => {
@@ -100,11 +100,6 @@ const CardOrder = (props: Props) => {
             setStateIndex(5);
           }
           break;
-        default:
-          setbgIndex(5);
-          setTextIndex(3);
-          setStateIndex(2);
-          break;
       }
     }
 
@@ -126,6 +121,15 @@ const CardOrder = (props: Props) => {
         setbgIndex(1);
         setTextIndex(5);
         setStateIndex(5);
+        break;
+
+      case "In Process":
+      case "En Proceso":
+        if (a < 0) {
+          setbgIndex(6);
+          setTextIndex(3);
+          setStateIndex(2);
+        }
         break;
       default:
         if (a > 30 || a < 0) {

@@ -35,12 +35,12 @@ function NavBar() {
   return (
     <Flex backgroundColor="white">
       <Button colorScheme="blue" onClick={onOpen}>
-        Menu
+        Pedidos
       </Button>
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Menu</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">Pedidos</DrawerHeader>
           <DrawerBody>
             <RadioGroup defaultValue={placement} onChange={setPlacement}>
               <Stack direction="row" mb="4" gap="5">

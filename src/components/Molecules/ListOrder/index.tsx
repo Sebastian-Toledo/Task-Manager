@@ -31,18 +31,18 @@ const ListOrder = () => {
   const [getSelect, setSelect] = useState("");
   const [placement, setPlacement] = useState("En Proceso");
 
-  useEffect(() => {
+  const fetching = () => {
     fetch(`http://${HOST}/task`)
       .then((response) => response.json())
       .then((orderss: Order[]) => {
         setOrders(orderss);
       });
+  };
+
+  useEffect(() => {
+    fetching();
     const interval = setInterval(() => {
-      fetch(`http://${HOST}/task`)
-        .then((response) => response.json())
-        .then((orderss: Order[]) => {
-          setOrders(orderss);
-        });
+      fetching();
     }, 600000);
     return () => clearInterval(interval);
   }, []);
@@ -118,7 +118,7 @@ const ListOrder = () => {
     <Flex flexDirection="column" gap="5" maxW="75%">
       <Flex backgroundColor="white" flexDirection="column" gap="2" padding="5">
         <Heading alignSelf="center" paddingBottom="2">
-          Menu
+          Pedidos
         </Heading>
         <Divider />
         <RadioGroup defaultValue={placement} onChange={setPlacement}>

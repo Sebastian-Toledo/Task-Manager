@@ -51,15 +51,23 @@ const BigOrder = (props: Props) => {
     stateOrder,
     cashAdvance,
     phone,
-    modify,
   } = props.order;
+  const dLine = new Date(deadLine);
+  const currentDate = new Date();
+  const isOkey = Math.round(
+    (dLine.getTime() - currentDate.getTime()) / 86400000
+  );
   const confirmPassword = (values: Object, password: String) => {
-    const userInput = prompt("Por favor, ingrese la contraseña");
-    if (userInput === password) {
-      submiteOk(values);
-      customToast("success", "Modificaciones Realizadas");
+    if (isOkey < 0) {
+      customToast("error", "Modifique el plazo");
     } else {
-      customToast("error", "Contraseña Incorrecta");
+      const userInput = prompt("Por favor, ingrese la contraseña");
+      if (userInput === password) {
+        submiteOk(values);
+        customToast("success", "Modificaciones Realizadas");
+      } else {
+        customToast("error", "Contraseña Incorrecta");
+      }
     }
   };
   const customToast = (state: ToastState, description: String) => {
