@@ -58,7 +58,7 @@ const BigOrder = (props: Props) => {
     (dLine.getTime() - currentDate.getTime()) / 86400000
   );
   const confirmPassword = (values: Object, password: String) => {
-    if (isOkey < 0) {
+    if (isOkey < 0 && stateOrder === "En Proceso") {
       customToast("error", "Modifique el plazo");
     } else {
       const userInput = prompt("Por favor, ingrese la contraseña");
