@@ -21,6 +21,7 @@ import { formatDateAsDatetimeString } from "../../../utils/dateUtils";
 import axios from "axios";
 import * as Yup from "yup";
 import { HOST, IP } from "../../../utils/envirementConfiguration";
+import dictionary from "../../../utils/dictionaryOfFuctions";
 
 const FormOrder = () => {
   const formik = useFormik({
@@ -50,6 +51,7 @@ const FormOrder = () => {
       phone: Yup.number().required("Campo requerido"),
     }),
     onSubmit: (values) => {
+      values.deadLine = dictionary.changeDeadline(values.deadLine);
       axios({
         method: "POST",
         url: `http://${HOST}/task/create`,
